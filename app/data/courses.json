@@ -1,0 +1,212 @@
+{
+    "financial-literacy": {
+      "id": "financial-literacy",
+      "title": "Financial Literacy Course",
+      "description": "Master the fundamentals of personal finance and build a secure financial future",
+      "category": "Finance",
+      "estimatedDuration": "3-4 hours",
+      "topics": [
+        {
+          "title": "Financial Literacy Fundamentals",
+          "description": "Introduction to basic financial concepts and why they matter",
+          "modules": [
+            {
+              "title": "Introduction to Financial Literacy",
+              "description": "Welcome to the course and understanding what financial literacy means",
+              "phases": [
+                {
+                  "type": "content",
+                  "content": [
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Hello everyone, and welcome to Financial Literacy 101! Today, we're going to start a journey to understand money better. It might sound complicated, but I promise we'll make it simple and fun."
+                      }
+                    },
+                    {
+                      "command_type": "WHITEBOARD",
+                      "payload": {
+                        "html": "<h1>What is Financial Literacy?</h1><p>It's the ability to understand and effectively use various financial skills, including personal financial management, budgeting, and investing.</p>"
+                      }
+                    },
+                    {
+                      "command_type": "CLASSMATE_SPEECH",
+                      "payload": {
+                        "text": "So... it's like learning the secret level-up codes for money? Awesome!"
+                      }
+                    },
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Haha, exactly! Think of it as getting the strategy guide for your financial life. Let's get started when you're ready."
+                      }
+                    },
+                    {
+                      "command_type": "WAIT_FOR_STUDENT",
+                      "payload": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Budgeting and Money Management",
+          "description": "Learn how to create and manage budgets, and understand the difference between saving and investing",
+          "modules": [
+            {
+              "title": "Budgeting with the 50/30/20 Rule",
+              "description": "Master the fundamentals of budgeting using the popular 50/30/20 framework",
+              "phases": [
+                {
+                  "type": "content",
+                  "content": [
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Our first topic is one of the most powerful tools you can have: a budget. A budget is simply a plan for how you're going to spend your money."
+                      }
+                    },
+                    {
+                      "command_type": "WHITEBOARD",
+                      "payload": {
+                        "html": "<h2>The 50/30/20 Budget Rule</h2><ul><li><b>50%</b> on Needs (rent, groceries, utilities)</li><li><b>30%</b> on Wants (dining out, hobbies, entertainment)</li><li><b>20%</b> on Savings & Debt Repayment</li></ul>"
+                      }
+                    },
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "A great starting point is the 50/30/20 rule. You divide your after-tax income into these three categories. It helps ensure you're saving while still having fun."
+                      }
+                    },
+                    {
+                      "command_type": "CLASSMATE_SPEECH",
+                      "payload": {
+                        "text": "Wait, so my video game collection falls under 'Wants', right? Not 'Needs'? Bummer."
+                      }
+                    },
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "That's right! It's all about making conscious choices. Now, let's see if you've got the hang of it."
+                      }
+                    },
+                    {
+                      "command_type": "QUESTION",
+                      "payload": {
+                        "question": "According to the 50/30/20 rule, what percentage of your income should go towards 'Needs'?",
+                        "options": [
+                          {
+                            "text": "20%",
+                            "correct": false
+                          },
+                          {
+                            "text": "30%",
+                            "correct": false
+                          },
+                          {
+                            "text": "50%",
+                            "correct": true
+                          },
+                          {
+                            "text": "100%",
+                            "correct": false
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Saving vs. Investing",
+              "description": "Understand the key differences between saving and investing your money",
+              "phases": [
+                {
+                  "type": "instruction",
+                  "instruction": "Create a slide that introduces the difference between saving and investing. Start by defining 'saving' as setting aside money for short-term goals or emergencies. Use the WHITEBOARD to show examples like an 'Emergency Fund' or 'Vacation Fund'. Then, define 'investing' as using money to potentially grow wealth over the long term, mentioning it involves risk. Use the CLASSMATE_SPEECH to ask 'So investing is like planting a money tree?'. End the slide with a WAIT_FOR_STUDENT command."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Debt Management",
+          "description": "Learn to distinguish between good and bad debt and develop strategies for managing debt effectively",
+          "modules": [
+            {
+              "title": "Understanding Good Debt vs. Bad Debt",
+              "description": "Learn the critical difference between debt that helps build wealth and debt that hinders financial progress",
+              "phases": [
+                {
+                  "type": "content",
+                  "content": [
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Let's talk about debt. Not all debt is created equal. It's important to understand the difference between 'good debt' and 'bad debt'."
+                      }
+                    },
+                    {
+                      "command_type": "WHITEBOARD",
+                      "payload": {
+                        "html": "<h2>Good Debt vs. Bad Debt</h2><div style='display: flex; justify-content: space-around;'><div style='border: 1px solid green; padding: 10px; border-radius: 8px;'><h4>Good Debt 👍</h4><p>Investments that can grow in value or increase your income.</p><ul><li>Student Loans</li><li>Mortgage</li><li>Business Loan</li></ul></div><div style='border: 1px solid red; padding: 10px; border-radius: 8px;'><h4>Bad Debt 👎</h4><p>Money borrowed for things that depreciate in value.</p><ul><li>Credit Card Debt</li><li>Car Loans (most)</li><li>Payday Loans</li></ul></div></div>"
+                      }
+                    },
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Good debt helps you build wealth, like a loan for education or a house. Bad debt is typically for consumer goods and often comes with high interest rates, which can trap you."
+                      }
+                    },
+                    {
+                      "command_type": "QUESTION",
+                      "payload": {
+                        "question": "Which of the following is generally considered 'good debt'?",
+                        "options": [
+                          {
+                            "text": "A high-interest credit card balance",
+                            "correct": false
+                          },
+                          {
+                            "text": "A loan for a new TV",
+                            "correct": false
+                          },
+                          {
+                            "text": "A student loan for a college degree",
+                            "correct": true
+                          },
+                          {
+                            "text": "A payday loan",
+                            "correct": false
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Course Summary and Next Steps",
+          "description": "Review key concepts and plan your financial future",
+          "modules": [
+            {
+              "title": "Course Summary and Key Takeaways",
+              "description": "Consolidate learning and prepare for applying financial literacy skills",
+              "phases": [
+                {
+                  "type": "instruction",
+                  "instruction": "This is the final slide. Summarize the key topics covered: Budgeting (50/30/20 rule), Saving vs. Investing, and Good vs. Bad Debt. The teacher should give an encouraging final message about taking control of one's financial future. Use the WHITEBOARD to list the key takeaways. No questions are needed. End with a final WAIT_FOR_STUDENT."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+} 
