@@ -3,17 +3,14 @@ from .course import (
     CourseResponse,
     CreateCourseRequest,
     UpdateCourseRequest,
-    ContentModule,
-    InstructionModule,
     Command,
     CommandType,
-    ModuleType,
-    Difficulty,
     TeacherSpeechPayload,
     ClassmateSpeechPayload,
     WhiteboardPayload,
-    QuestionPayload,
-    WaitForStudentPayload
+    WaitForStudentPayload,
+    MultipleChoiceQuestionPayload,
+    PhaseType
 )
 
 __all__ = [
@@ -21,15 +18,12 @@ __all__ = [
     "CourseResponse", 
     "CreateCourseRequest",
     "UpdateCourseRequest",
-    "ContentModule",
-    "InstructionModule",
     "Command",
     "CommandType",
-    "ModuleType", 
-    "Difficulty",
     "TeacherSpeechPayload",
     "ClassmateSpeechPayload",
     "WhiteboardPayload",
-    "QuestionPayload",
-    "WaitForStudentPayload"
+    "WaitForStudentPayload",
+    "MultipleChoiceQuestionPayload"
+    "PhaseType"
 ] 

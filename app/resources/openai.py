@@ -13,14 +13,14 @@ from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_excep
 logger = logging.getLogger(__name__)
 
 
-class OpenAIService:
+class OpenAIResource:
     """Singleton OpenAI service for chat completions and other AI features"""
     _instance = None
     _client = None
     
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super(OpenAIService, cls).__new__(cls)
+            cls._instance = super(OpenAIResource, cls).__new__(cls)
             cls._client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         return cls._instance
     
@@ -29,6 +29,13 @@ class OpenAIService:
         """Get the OpenAI client instance"""
         return self._client
     
+    async def transcribe_audio(self, audio_bytes: bytes):
+        """Transcribe audio using OpenAI's API"""
+        response = await self.client.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_bytes,
+        )
+        return response.text
 
     @retry(
         stop=stop_after_attempt(3),
@@ -71,7 +78,12 @@ class OpenAIService:
             raise
 
 # Create a singleton instance for easier imports
-openai_service = OpenAIService()
+openai_resource = OpenAIResource()
+
+async def transcribe_audio(audio_bytes: bytes):
+    """Transcribe audio using OpenAI's API"""
+    response = await openai_resource.transcribe_audio(audio_bytes)
+    return response
 
 async def create_response(
     message: str,
@@ -86,7 +98,7 @@ async def create_response(
     """
     Create a response using OpenAI's API
     """
-    response = await openai_service.create_response(
+    response = await openai_resource.create_response(
         message=message,
         model=model,
         previous_response_id=previous_response_id,

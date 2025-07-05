@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime
 
 from app.dao.db import Db
-from app.models.session import SessionStatus
+from app.models.session import Session, SessionStatus
 
 router = APIRouter(prefix="/api/sessions", tags=["sessions"])
 
@@ -16,14 +16,8 @@ class CreateSessionRequest(BaseModel):
     module_id: Optional[int] = None
     phase_id: Optional[int] = None
 
-class SessionResponse(BaseModel):
-    session_id: str
-    user_id: str
-    course_id: str
-    created_at: str
-    status: str
 
-@router.post("/", response_model=SessionResponse)
+@router.post("/", response_model=Session)
 async def create_session(request: CreateSessionRequest):
     """
     Create a new learning session for a user and course.
@@ -43,6 +37,11 @@ async def create_session(request: CreateSessionRequest):
             detail=f"Course with id '{request.course_id}' not found"
         )
     
+    if request.topic_id is None:
+        request.topic_id = 0
+    if request.module_id is None:
+        request.module_id = 0
+
     # Generate unique session ID
     session_id = str(uuid.uuid4())
     
@@ -63,9 +62,9 @@ async def create_session(request: CreateSessionRequest):
     # Add session to sessions data
     db.update_session(session_id, session)
     
-    return SessionResponse(**session)
+    return Session(**session)
 
-@router.get("/{session_id}", response_model=SessionResponse)
+@router.get("/{session_id}", response_model=Session)
 async def get_session(session_id: str):
     """
     Get a session by its ID.
@@ -84,7 +83,7 @@ async def get_session(session_id: str):
             detail=f"Session with id '{session_id}' not found"
         )
     
-    return SessionResponse(**db.sessions[session_id])
+    return Session(**db.sessions[session_id])
 
 @router.get("/me")
 async def get_my_sessions():

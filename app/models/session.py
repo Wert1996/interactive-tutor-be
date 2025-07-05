@@ -13,7 +13,7 @@ class SessionStatus(str, Enum):
     NOT_STARTED = "NOT_STARTED"
 
 class Session(BaseModel):
-    session_id: str
+    id: str
     user_id: str
     course_id: str
     progress: SessionProgress

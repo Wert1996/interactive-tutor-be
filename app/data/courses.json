@@ -93,7 +93,7 @@
                       }
                     },
                     {
-                      "command_type": "QUESTION",
+                      "command_type": "MCQ_QUESTION",
                       "payload": {
                         "question": "According to the 50/30/20 rule, what percentage of your income should go towards 'Needs'?",
                         "options": [
@@ -162,7 +162,7 @@
                       }
                     },
                     {
-                      "command_type": "QUESTION",
+                      "command_type": "MCQ_QUESTION",
                       "payload": {
                         "question": "Which of the following is generally considered 'good debt'?",
                         "options": [

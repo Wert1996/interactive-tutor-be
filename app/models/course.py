@@ -8,7 +8,9 @@ class CommandType(str, Enum):
     CLASSMATE_SPEECH = "CLASSMATE_SPEECH"
     WHITEBOARD = "WHITEBOARD"
     QUESTION = "QUESTION"
+    MCQ_QUESTION = "MCQ_QUESTION"
     WAIT_FOR_STUDENT = "WAIT_FOR_STUDENT"
+    FINISH_MODULE = "FINISH_MODULE"
 
 
 class PhaseType(str, Enum):
@@ -17,12 +19,12 @@ class PhaseType(str, Enum):
 
 class TeacherSpeechPayload(BaseModel):
     text: str
-    audio_bytes: Optional[bytes] = None
+    audio_bytes: Optional[str] = None  # Base64 encoded audio data
 
 
 class ClassmateSpeechPayload(BaseModel):
     text: str
-    audio_bytes: Optional[bytes] = None
+    audio_bytes: Optional[str] = None  # Base64 encoded audio data
 
 
 class WhiteboardPayload(BaseModel):
@@ -61,13 +63,13 @@ class Phase(BaseModel):
 class Module(BaseModel):
     title: str
     description: str
-    phases: List[Phase]
+    phases: Optional[List[Phase]] = None
 
 
 class CourseTopic(BaseModel):
     title: str
     description: str
-    modules: List[Module]
+    modules: Optional[List[Module]] = None
 
 class Course(BaseModel):
     id: str
@@ -75,7 +77,7 @@ class Course(BaseModel):
     description: str
     category: str
     estimatedDuration: str
-    topics: List[CourseTopic]
+    topics: Optional[List[CourseTopic]] = None
 
 
 class CreateCourseRequest(BaseModel):
@@ -94,7 +96,7 @@ class CourseResponse(BaseModel):
     category: str
     estimatedDuration: str
     instructor: str
-    topics: List[CourseTopic]
+    topics: Optional[List[CourseTopic]] = None
 
 
 class UpdateCourseRequest(BaseModel):
