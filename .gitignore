@@ -164,4 +164,4 @@ yarn-debug.log*
 yarn-error.log* 
 
 # Data files
-data/
+app/data/
