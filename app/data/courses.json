@@ -44,7 +44,7 @@
                     {
                       "command_type": "BINARY_CHOICE_QUESTION",
                       "payload": {
-                        "question": "Saving money for that latest PS5 by not collecting leftover pennies is.. ",
+                        "question": "Saving money for that latest PS5 by collecting leftover pennies is.. ",
                         "left": "fumble",
                         "right": "4D chess",
                         "correct": "right"
