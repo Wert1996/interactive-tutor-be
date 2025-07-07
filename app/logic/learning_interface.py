@@ -149,7 +149,7 @@ class LearningInterface:
                 self.db.update_session_in_memory(session.id, session.model_dump())
                 await self.execute_commands(await self.parse_response(model_response))
         elif interaction.get("type") in ["mcq_question", "binary_choice_question"]:
-            text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Emit commands to explain the answer if needed. Emit FINISH_MODULE if we can proceed."
+            text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Emit FINISH_MODULE if we can proceed."
             model_response =  await create_response(message=text, previous_response_id=session.previous_response_id)
             session.previous_response_id = model_response.id
             self.db.update_session_in_memory(session.id, session.model_dump())

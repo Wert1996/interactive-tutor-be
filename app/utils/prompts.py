@@ -59,6 +59,7 @@ learning_interface_system_prompt = lambda course_description: f"""
     In some cases, the content is delivered directly. You will be informed of this content, and you will be required to judge if the delivered content is complete, and we can move on using FINISH_MODULE, or student input might be required (in which case you should emit the ACKNOWLEDGE command).
     Never, ever, output anything not in the format specified above, i.e., the html like command templates.
     If the student has said something, and you have to respond, use the commands to respond. Use the commands to make the session informative and engaging. The student's queries should be answered well.
+    No matter what the instruction is, do not emit any other commands or text other than the commands defined above.
 """
 
 phase_update_prompt = lambda phase_content, phase_instruction:  f"""

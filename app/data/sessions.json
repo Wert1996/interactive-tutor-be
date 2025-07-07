@@ -1,1 +1,76 @@
-{}
+{
+  "aaaf30eb-29cc-4831-a078-5bc1fc2d13a8": {
+    "id": "aaaf30eb-29cc-4831-a078-5bc1fc2d13a8",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686bf35a43388198b408d39f27727607028c2cc063676f90",
+    "checkpoint_response_id": null,
+    "status": "ACTIVE"
+  },
+  "2e52f57b-7cbb-444f-80f7-cf7b982ecf26": {
+    "id": "2e52f57b-7cbb-444f-80f7-cf7b982ecf26",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 1,
+      "module_id": 1,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686bf419a5b4819a97a67a416d9888c204c747c15dbfd9fc",
+    "checkpoint_response_id": "resp_686bf403b80c819a932279444c0a3a8104c747c15dbfd9fc",
+    "status": "ACTIVE"
+  },
+  "6932e729-193e-48a6-b696-998be0cec5a8": {
+    "id": "6932e729-193e-48a6-b696-998be0cec5a8",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T18:36:44.728437",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "f3281105-b256-4389-bbd2-c22087e24951": {
+    "id": "f3281105-b256-4389-bbd2-c22087e24951",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T18:40:38.854160",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "bc9aa561-cdaa-4f54-8602-1b14cc00e3fb": {
+    "id": "bc9aa561-cdaa-4f54-8602-1b14cc00e3fb",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T18:43:47.269712",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "ec653d3f-a789-46ed-b992-b994ae1c7338": {
+    "id": "ec653d3f-a789-46ed-b992-b994ae1c7338",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T18:45:52.475480",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  }
+}

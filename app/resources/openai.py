@@ -69,7 +69,7 @@ class OpenAIResource:
         Create a response using OpenAI's API
         """
         if not model:
-            model = "gpt-4o-mini"
+            model = "gpt-4o"
         
         logger.info(f"Creating response with model: {model}")
         
