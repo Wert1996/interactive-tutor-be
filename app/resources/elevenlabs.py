@@ -20,7 +20,7 @@ class ElevenLabsResource:
         return self._eleven.text_to_speech.convert(
             text=text,
             voice_id=voice_id,
-            model_id="eleven_multilingual_v2",
+            model_id="eleven_multilingual_v1",
             output_format="mp3_44100_128",
         )
 

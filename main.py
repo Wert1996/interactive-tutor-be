@@ -1,8 +1,18 @@
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.websocket_routes import router as websocket_router
 from app.routes.session_routes import router as session_router
 from app.routes.course_routes import router as course_router
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 app = FastAPI(
     title="Interactive Tutor Backend",

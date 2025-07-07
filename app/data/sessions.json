@@ -1,9 +1,484 @@
 {
-  "bca58080-cd05-4a63-8433-a6f95400af6b": {
-    "id": "bca58080-cd05-4a63-8433-a6f95400af6b",
+  "e6012108-bd57-4710-bc9a-8c039c04d895": {
+    "id": "e6012108-bd57-4710-bc9a-8c039c04d895",
     "user_id": "user123",
     "course_id": "financial-literacy",
-    "created_at": "2025-07-05T14:20:39.911088",
+    "created_at": "2025-07-06T13:17:50.733062",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "c3aa7813-3c42-4ae2-a153-02a17843e001": {
+    "id": "c3aa7813-3c42-4ae2-a153-02a17843e001",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T13:18:57.987701",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "d884c62b-7dc5-4626-9b2d-febbbc9f17a6": {
+    "id": "d884c62b-7dc5-4626-9b2d-febbbc9f17a6",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686a787fbe548199b9409efe949f38b30b11011c11ded7a8",
+    "checkpoint_response_id": null,
+    "status": "ACTIVE"
+  },
+  "22505215-1b2e-42f1-9ad3-35bf3401a3f3": {
+    "id": "22505215-1b2e-42f1-9ad3-35bf3401a3f3",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686a78e305c0819a8e235b5d3b606f530034eb8447dbe6f2",
+    "checkpoint_response_id": null,
+    "status": "ACTIVE"
+  },
+  "4a4bc511-787d-4531-8f27-49c95e7b55a8": {
+    "id": "4a4bc511-787d-4531-8f27-49c95e7b55a8",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T13:24:06.753466",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "38f926d9-9b6c-4187-b06c-c7ead3a55250": {
+    "id": "38f926d9-9b6c-4187-b06c-c7ead3a55250",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T13:38:03.955506",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "175d6b52-3818-4e49-b8bc-adadb6727f64": {
+    "id": "175d6b52-3818-4e49-b8bc-adadb6727f64",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T13:39:23.279595",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "4183432a-b80c-4a98-8869-4a8b3db9792f": {
+    "id": "4183432a-b80c-4a98-8869-4a8b3db9792f",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686aab4e6a2c819b87e79e27bd3aa8a60305ac78da390869",
+    "checkpoint_response_id": null,
+    "status": "ACTIVE"
+  },
+  "8e1d6d3c-da45-4025-8b6a-3256b3d737c1": {
+    "id": "8e1d6d3c-da45-4025-8b6a-3256b3d737c1",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686aab674420819bbbf8e7a8ac77bd3e0d571377c4eab2da",
+    "checkpoint_response_id": null,
+    "status": "ACTIVE"
+  },
+  "cf35355a-5398-44d1-8a3c-c432130322b6": {
+    "id": "cf35355a-5398-44d1-8a3c-c432130322b6",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T17:00:12.625082",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "dec1b05c-bf14-4ee9-8418-ef702185a185": {
+    "id": "dec1b05c-bf14-4ee9-8418-ef702185a185",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T17:14:12.142944",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "374dc7d5-b85c-4ad5-a7e9-937c4bc161a6": {
+    "id": "374dc7d5-b85c-4ad5-a7e9-937c4bc161a6",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T18:11:45.255492",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "8fef7e6f-d56f-4d1a-87ea-2b3c59eb8fd3": {
+    "id": "8fef7e6f-d56f-4d1a-87ea-2b3c59eb8fd3",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686abeed5468819986c88c940f0a4748033bf0dbb18a8ed2",
+    "checkpoint_response_id": null,
+    "status": "COMPLETED"
+  },
+  "4f7facbb-9216-4a2a-b390-dc95172124bd": {
+    "id": "4f7facbb-9216-4a2a-b390-dc95172124bd",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686abf68ee54819a8f55c424f67c3a080c655f75c884e4ff",
+    "checkpoint_response_id": null,
+    "status": "COMPLETED"
+  },
+  "6363ae53-a44a-4321-85f9-11a44e82128f": {
+    "id": "6363ae53-a44a-4321-85f9-11a44e82128f",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T18:53:42.352711",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "1931a5e9-d1aa-43f8-af48-ecdc7859702b": {
+    "id": "1931a5e9-d1aa-43f8-af48-ecdc7859702b",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T18:56:44.681874",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "f0fe036b-873d-47cd-977f-ec9b53a1264f": {
+    "id": "f0fe036b-873d-47cd-977f-ec9b53a1264f",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T19:02:50.634057",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "76eaa5d9-4693-4f14-a678-f6947a329c7a": {
+    "id": "76eaa5d9-4693-4f14-a678-f6947a329c7a",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-06T19:12:55.019153",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "94ac37bf-7332-4bc0-8a77-638bbb34391d": {
+    "id": "94ac37bf-7332-4bc0-8a77-638bbb34391d",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T05:47:16.046198",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "0743e298-ec5d-4f6a-832c-f9e0ffee5e54": {
+    "id": "0743e298-ec5d-4f6a-832c-f9e0ffee5e54",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T05:51:06.683858",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "e0dfa8b6-2840-45d8-8248-350732618fde": {
+    "id": "e0dfa8b6-2840-45d8-8248-350732618fde",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T05:57:07.481797",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "e0a1d0f1-e30f-49ab-8101-7b2bc70ca583": {
+    "id": "e0a1d0f1-e30f-49ab-8101-7b2bc70ca583",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T05:59:02.551979",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "6a8e845e-a61a-4686-bc81-f5d5b068e958": {
+    "id": "6a8e845e-a61a-4686-bc81-f5d5b068e958",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T06:02:07.560632",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "cbc78a02-f495-4dc7-b6ec-cdf7f795ee5e": {
+    "id": "cbc78a02-f495-4dc7-b6ec-cdf7f795ee5e",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T06:55:45.275663",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "61f95103-a720-492c-abd0-3c3f502776b2": {
+    "id": "61f95103-a720-492c-abd0-3c3f502776b2",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T06:59:58.416903",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "72605f30-00c6-495c-bf8d-12ba33b5bc23": {
+    "id": "72605f30-00c6-495c-bf8d-12ba33b5bc23",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T07:01:33.087862",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "efa44ff9-be5a-4372-b419-1bd0e1eda029": {
+    "id": "efa44ff9-be5a-4372-b419-1bd0e1eda029",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T07:07:20.056888",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "6edfa1e0-0f1f-430b-bfda-cbec4d3c1102": {
+    "id": "6edfa1e0-0f1f-430b-bfda-cbec4d3c1102",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T07:10:06.063638",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "e1cdf0ee-c599-4abe-b46c-b74d0d8bd30c": {
+    "id": "e1cdf0ee-c599-4abe-b46c-b74d0d8bd30c",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T07:12:31.103776",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "fdea7e60-0ebc-430d-8d90-329933aacc63": {
+    "id": "fdea7e60-0ebc-430d-8d90-329933aacc63",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T07:17:47.008356",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "b7a10456-6576-45e4-a0ec-646323c33340": {
+    "id": "b7a10456-6576-45e4-a0ec-646323c33340",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T08:03:13.549488",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "4238942c-533f-4998-80b8-08439ee9e830": {
+    "id": "4238942c-533f-4998-80b8-08439ee9e830",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T08:15:45.829608",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "da19898f-52e3-4166-9ec2-832e572af28c": {
+    "id": "da19898f-52e3-4166-9ec2-832e572af28c",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T08:48:56.480869",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "a383fcd7-bd5a-4d12-996e-bcf1dc402d25": {
+    "id": "a383fcd7-bd5a-4d12-996e-bcf1dc402d25",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T08:51:14.839794",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "9da57ff4-5650-49f4-8951-2beba1100164": {
+    "id": "9da57ff4-5650-49f4-8951-2beba1100164",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T08:54:37.905641",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "38a77e75-e4af-43e1-9ac2-9d035861f6c2": {
+    "id": "38a77e75-e4af-43e1-9ac2-9d035861f6c2",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "progress": {
+      "topic_id": 3,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "previous_response_id": "resp_686b8c8d3004819985000e23c376dcdb01722005481dfecd",
+    "checkpoint_response_id": "resp_686b8c87eb6c8199874fa0826471573d01722005481dfecd",
+    "status": "COMPLETED"
+  },
+  "70c74ddd-2205-4078-90d0-7a1b00ced87b": {
+    "id": "70c74ddd-2205-4078-90d0-7a1b00ced87b",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T11:25:12.379085",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "9ea78e51-dc93-4055-81b0-a0452a133d95": {
+    "id": "9ea78e51-dc93-4055-81b0-a0452a133d95",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T11:28:06.663751",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "e507a6b3-6e15-45a7-bc2b-f17b68bc6038": {
+    "id": "e507a6b3-6e15-45a7-bc2b-f17b68bc6038",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T11:29:33.064695",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    }
+  },
+  "1507fc5c-1649-435c-b06f-881f8a489625": {
+    "id": "1507fc5c-1649-435c-b06f-881f8a489625",
+    "user_id": "user123",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-07T11:30:34.183012",
     "status": "NOT_STARTED",
     "progress": {
       "topic_id": 0,

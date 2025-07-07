@@ -9,9 +9,10 @@ class CommandType(str, Enum):
     WHITEBOARD = "WHITEBOARD"
     QUESTION = "QUESTION"
     MCQ_QUESTION = "MCQ_QUESTION"
+    BINARY_CHOICE_QUESTION = "BINARY_CHOICE_QUESTION"
     WAIT_FOR_STUDENT = "WAIT_FOR_STUDENT"
     FINISH_MODULE = "FINISH_MODULE"
-
+    ACKNOWLEDGE = "ACKNOWLEDGE"
 
 class PhaseType(str, Enum):
     CONTENT = "content"
@@ -38,10 +39,18 @@ class MultipleChoiceQuestionPayload(BaseModel):
     question: str
     options: List[QuestionOption]
 
+class BinaryChoiceQuestionPayload(BaseModel):
+    question: str
+    left: str
+    right: str
+    # correct is either "left" or "right"
+    correct: str 
 
 class WaitForStudentPayload(BaseModel):
     pass
 
+class AckPayload(BaseModel):
+    pass
 
 class Command(BaseModel):
     command_type: CommandType
@@ -50,9 +59,29 @@ class Command(BaseModel):
         ClassmateSpeechPayload,
         WhiteboardPayload, 
         MultipleChoiceQuestionPayload,
+        BinaryChoiceQuestionPayload,
         WaitForStudentPayload,
+        AckPayload,
         Dict[str, Any]
     ]
+    
+    def to_string(self):
+        if self.command_type == CommandType.TEACHER_SPEECH:
+            return f"<TEACHER_SPEECH>{self.payload.text}</TEACHER_SPEECH>"
+        elif self.command_type == CommandType.CLASSMATE_SPEECH:
+            return f"<CLASSMATE_SPEECH>{self.payload.text}</CLASSMATE_SPEECH>"
+        elif self.command_type == CommandType.WHITEBOARD:
+            return f"<WHITEBOARD>{self.payload.html}</WHITEBOARD>"
+        elif self.command_type == CommandType.MCQ_QUESTION:
+            return f"<MCQ_QUESTION>{self.payload.model_dump_json()}</MCQ_QUESTION>"
+        elif self.command_type == CommandType.BINARY_CHOICE_QUESTION:
+            return f"<BINARY_CHOICE_QUESTION>{self.payload.model_dump_json()}</BINARY_CHOICE_QUESTION>"
+        elif self.command_type == CommandType.WAIT_FOR_STUDENT:
+            return f"<WAIT_FOR_STUDENT/>"
+        elif self.command_type == CommandType.FINISH_MODULE:
+            return f"<FINISH_MODULE/>"
+        elif self.command_type == CommandType.ACKNOWLEDGE:
+            return f"<ACKNOWLEDGE/>"
 
 class Phase(BaseModel):
     type: PhaseType

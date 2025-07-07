@@ -42,8 +42,13 @@
                       }
                     },
                     {
-                      "command_type": "WAIT_FOR_STUDENT",
-                      "payload": {}
+                      "command_type": "BINARY_CHOICE_QUESTION",
+                      "payload": {
+                        "question": "Saving money for that latest PS5 by not collecting leftover pennies is.. ",
+                        "left": "fumble",
+                        "right": "4D chess",
+                        "correct": "right"
+                      }
                     }
                   ]
                 }
