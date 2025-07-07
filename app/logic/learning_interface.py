@@ -143,6 +143,10 @@ class LearningInterface:
             audio_bytes = interaction.get("audio_bytes", None)
             text = await transcribe_audio(audio_bytes)
             if text:
+                await self.websocket.send_json({
+                    "type": "student_speech",
+                    "text": text
+                })
                 text = f"Student has said something. Please respond accordingly. Use the commands to respond. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
                 model_response =  await create_response(message=text, previous_response_id=session.previous_response_id)
                 session.previous_response_id = model_response.id
