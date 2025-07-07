@@ -58,6 +58,7 @@ learning_interface_system_prompt = lambda course_description: f"""
     Always refer to the student as "you" in the speech.
     In some cases, the content is delivered directly. You will be informed of this content, and you will be required to judge if the delivered content is complete, and we can move on using FINISH_MODULE, or student input might be required (in which case you should emit the ACKNOWLEDGE command).
     Never, ever, output anything not in the format specified above, i.e., the html like command templates.
+    If the student has said something, and you have to respond, use the commands to respond. Use the commands to make the session informative and engaging. The student's queries should be answered well.
 """
 
 phase_update_prompt = lambda phase_content, phase_instruction:  f"""
@@ -65,7 +66,7 @@ phase_update_prompt = lambda phase_content, phase_instruction:  f"""
         This content has been delivered to the student. Do not re-iterate this content. This message is only to inform you that the content has been delivered to the student. In response to this message, you are only supposed to either emit the FINISH_MODULE command, or emit the ACKNOWLEDGE command. Do not emit any other commands or anything else.
         Look at the content delivered, and emit the <FINISH_MODULE/> command if the phase is complete, and no user input is required.
         Emit <ACKNOWLEDGE/> if the phase is not finished.
-        Do not emit any other commands or anything else.
+        Do not emit any other commands or anything else. However, if the student has said something, and you have to respond, use the commands to respond. Use the commands to make the session informative and engaging. The student's queries should be answered well.
         """ if phase_content else f"""
         The instruction for this phase is: {phase_instruction}
         Use the instructions to generate the content of the module.

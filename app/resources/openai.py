@@ -1,9 +1,11 @@
 """
 OpenAI resource module for AI completions and chat interactions.
 """
+import base64
 import logging
 from typing import Dict, Any, Optional
 import os
+import io
 
 import openai
 from openai import AsyncOpenAI
@@ -31,9 +33,19 @@ class OpenAIResource:
     
     async def transcribe_audio(self, audio_bytes: bytes):
         """Transcribe audio using OpenAI's API"""
+        # Create a file-like object with proper audio format
+        if audio_bytes:
+            # If audio_bytes is base64 encoded, decode it first
+            if isinstance(audio_bytes, str):
+                audio_bytes = base64.b64decode(audio_bytes)
+        else:
+            return None
+        audio_file = io.BytesIO(audio_bytes)
+        audio_file.name = "audio.wav"  # Set a default audio format
+        
         response = await self.client.audio.transcriptions.create(
             model="whisper-1",
-            file=audio_bytes,
+            file=audio_file,
         )
         return response.text
 
