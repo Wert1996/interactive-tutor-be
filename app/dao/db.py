@@ -5,6 +5,7 @@ from typing import Any, Dict, Union
 
 from app.models.course import Course
 from app.models.session import Session
+from app.models.user import User
 
 
 def load_json_data(file_path: str) -> Dict[str, Any]:
@@ -44,8 +45,15 @@ class Db:
         return Session(**session_json)
     
     def get_user(self, user_id: str):
-        return self.users.get(user_id, None)
+        user_json = self.users.get(user_id, None)
+        if not user_json:
+            return None
+        return User(**user_json)
     
+    def create_user(self, user_id: str, user_data: Dict[str, Any]):
+        self.users[user_id] = user_data
+        save_json_data("app/data/users.json", self.users)
+
     def update_session(self, session_id: str, session_data: Dict[str, Any]):
         self.sessions[session_id] = session_data
         save_json_data("app/data/sessions.json", self.sessions)

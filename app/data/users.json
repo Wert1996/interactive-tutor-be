@@ -1,1 +1,22 @@
-{}
+{
+  "wert": {
+    "id": "wert",
+    "name": "Anshumaan",
+    "onboarding_data": {
+      "interests": [
+        "Space",
+        "football and music"
+      ],
+      "hobbies": [
+        "Football",
+        "space",
+        "hiking"
+      ],
+      "preferredAnalogies": [
+        "Movie references",
+        "Sports analogies"
+      ],
+      "age": 16
+    }
+  }
+}

@@ -168,9 +168,10 @@ class LearningInterface:
         phase_id = session.progress.phase_id if session.progress.phase_id is not None else 0
         phase = course.topics[session.progress.topic_id].modules[session.progress.module_id].phases[phase_id]
         session.progress.phase_id = phase_id
+        user = self.db.get_user(session.user_id)
         system_instructions = None
         if session.status == SessionStatus.NOT_STARTED:
-            system_instructions = prompts.learning_interface_system_prompt(course.description)
+            system_instructions = prompts.get_learning_interface_system_prompt(course.description, user)
             session.status = SessionStatus.ACTIVE
             session.previous_response_id = None
             session.checkpoint_response_id = None

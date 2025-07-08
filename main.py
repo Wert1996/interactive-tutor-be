@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routes.websocket_routes import router as websocket_router
 from app.routes.session_routes import router as session_router
 from app.routes.course_routes import router as course_router
+from app.routes.user_routes import router as user_router
 
 # Configure logging
 logging.basicConfig(
@@ -35,6 +36,8 @@ app.add_middleware(
 app.include_router(websocket_router)
 app.include_router(session_router)
 app.include_router(course_router)
+app.include_router(user_router)
+
 @app.get("/")
 async def root():
     return {"message": "Interactive Tutor Backend API is running"}
