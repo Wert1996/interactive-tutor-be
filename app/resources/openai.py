@@ -2,6 +2,7 @@
 OpenAI resource module for AI completions and chat interactions.
 """
 import base64
+from functools import cache
 import logging
 from typing import Dict, Any, Optional
 import os
@@ -31,6 +32,7 @@ class OpenAIResource:
         """Get the OpenAI client instance"""
         return self._client
     
+    @cache
     async def transcribe_audio(self, audio_bytes: bytes):
         """Transcribe audio using OpenAI's API"""
         # Create a file-like object with proper audio format
@@ -54,6 +56,7 @@ class OpenAIResource:
         wait=wait_exponential(multiplier=1, min=2, max=10),
         retry=retry_if_exception_type((openai.APIError, openai.APIConnectionError, openai.RateLimitError))
     )
+    @cache
     async def create_response(
         self,
         message: str,
@@ -70,20 +73,24 @@ class OpenAIResource:
         """
         if not model:
             model = "gpt-4o"
-        
-        logger.info(f"Creating response with model: {model}")
-        
         try:
-            response = await self.client.responses.create(
-                model=model,
-                input=message,
-                previous_response_id=previous_response_id,
-                temperature=temperature,
-                max_output_tokens=max_tokens,
-                instructions=instructions,
-                text=response_schema,
-                stream=stream,
-            )
+            # Ignore parameters that are None
+            # Build kwargs dict, omitting any that are None
+            params = {
+                "model": model,
+                "input": message,
+                "previous_response_id": previous_response_id,
+                "temperature": temperature,
+                "max_output_tokens": max_tokens,
+                "instructions": instructions,
+                "text": response_schema,
+                "stream": stream,
+            }
+            # Remove keys where value is None
+            params = {k: v for k, v in params.items() if v is not None}
+            logger.info(f"Params: {params}")
+            response = await self.client.responses.create(**params)
+            logger.info(f"Response: {response.id}")
             return response
         except Exception as e:
             logger.error(f"Error creating response: {e}")

@@ -4,19 +4,64 @@
     "name": "Anshumaan",
     "onboarding_data": {
       "interests": [
-        "Space",
-        "football and music"
+        "football"
       ],
       "hobbies": [
-        "Football",
-        "space",
-        "hiking"
+        "Football"
       ],
       "preferredAnalogies": [
-        "Movie references",
-        "Sports analogies"
+        "Football analogies"
       ],
       "age": 16
+    }
+  },
+  "sush": {
+    "id": "sush",
+    "name": "Sush",
+    "onboarding_data": {
+      "interests": [
+        "Art",
+        "painting",
+        "music"
+      ],
+      "hobbies": [
+        "Reading",
+        "Writing",
+        "Drawing",
+        "Painting",
+        "Music"
+      ],
+      "preferredAnalogies": [
+        "Food comparisons"
+      ],
+      "age": 16
+    }
+  },
+  "aman": {
+    "id": "aman",
+    "name": "Aman",
+    "onboarding_data": {
+      "interests": [
+        "History",
+        "Music",
+        "Psychology",
+        "Technology",
+        "Engineering"
+      ],
+      "hobbies": [
+        "Drawing",
+        "Music",
+        "Gaming",
+        "Swimming",
+        "Yoga"
+      ],
+      "preferredAnalogies": [
+        "Everyday life examples",
+        "Technology analogies",
+        "Nature metaphors",
+        "Movie references"
+      ],
+      "age": 9
     }
   }
 }

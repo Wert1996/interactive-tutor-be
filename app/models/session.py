@@ -21,3 +21,4 @@ class Session(BaseModel):
     # A phase is started from the checkpoint response id. This is so that the user can resume the lesson from a phase.
     checkpoint_response_id: Optional[str] = None
     status: Optional[SessionStatus] = None
+    system_instructions: Optional[str] = None

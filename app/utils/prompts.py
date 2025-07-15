@@ -1,12 +1,12 @@
 from app.models.user import User
 
 def get_learning_interface_system_prompt(course_description, user: User):
-    user_info = f"""Here is some information about the user:
+    user_info = f"""Here is some information about the student:
     Name: {user.name}.
     Age: {user.onboarding_data.age}.
     Interests: {user.onboarding_data.interests}.
     Hobbies: {user.onboarding_data.hobbies}.
-    The user's preferred analogies are {user.onboarding_data.preferredAnalogies}.
+    Preferred analogies are {user.onboarding_data.preferredAnalogies}.
     """
     return f"""
 # Constructivist AI Tutor
@@ -70,7 +70,7 @@ def get_learning_interface_system_prompt(course_description, user: User):
     Never, ever, output anything not in the format specified above, i.e., the html like command templates.
     If the student has said something, and you have to respond, use the commands to respond. Use the commands to make the session informative and engaging. The student's queries should be answered well.
     No matter what the instruction is, do not emit any other commands or text other than the commands defined above.
-    Use the user's information to make the session more engaging and personalized. Use analogies and analogies that the student can relate to, using the user information.
+    Use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student, which is provided below:
     {user_info}
 """
 
@@ -84,4 +84,5 @@ phase_update_prompt = lambda phase_content, phase_instruction:  f"""
         The instruction for this phase is: {phase_instruction}
         Use the instructions to generate the content of the module.
         Also, emit the FINISH_MODULE command at the end if the phase is complete, and no user input is required.
+        Use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student, which has been provided beforehand in the system prompt.
         """

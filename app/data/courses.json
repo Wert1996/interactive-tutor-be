@@ -131,7 +131,7 @@
               "phases": [
                 {
                   "type": "instruction",
-                  "instruction": "Create a slide that introduces the difference between saving and investing. Start by defining 'saving' as setting aside money for short-term goals or emergencies. Use the WHITEBOARD to show examples like an 'Emergency Fund' or 'Vacation Fund'. Then, define 'investing' as using money to potentially grow wealth over the long term, mentioning it involves risk. Use the CLASSMATE_SPEECH to ask 'So investing is like planting a money tree?'. End the slide with a WAIT_FOR_STUDENT command."
+                  "instruction": "Create a slide that introduces the difference between saving and investing. Start by defining 'saving' as setting aside money for short-term goals or emergencies. Use the WHITEBOARD to show examples like an 'Emergency Fund' or 'Vacation Fund'. Then, define 'investing' as using money to potentially grow wealth over the long term, mentioning it involves risk. Use TEACHER_SPEECH to explain the content. Use the CLASSMATE_SPEECH to ask 'So investing is like planting a money tree?'. End the slide with a WAIT_FOR_STUDENT command. For each command's content, personalise it according to the user's favourite hobbies, interests and analogies. These have been provided in the system message beforehand."
                 }
               ]
             }

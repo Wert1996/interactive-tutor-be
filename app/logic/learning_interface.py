@@ -147,14 +147,14 @@ class LearningInterface:
                     "type": "student_speech",
                     "text": text
                 })
-                text = f"Student has said something. Please respond accordingly. Use the commands to respond. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
-                model_response =  await create_response(message=text, previous_response_id=session.previous_response_id)
+                text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
+                model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
                 session.previous_response_id = model_response.id
                 self.db.update_session_in_memory(session.id, session.model_dump())
                 await self.execute_commands(await self.parse_response(model_response))
         elif interaction.get("type") in ["mcq_question", "binary_choice_question"]:
-            text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Emit FINISH_MODULE if we can proceed."
-            model_response =  await create_response(message=text, previous_response_id=session.previous_response_id)
+            text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Feel free to use whiteboard/teacher/classmate speech and other commands. Emit FINISH_MODULE if we can proceed."
+            model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
             session.previous_response_id = model_response.id
             self.db.update_session_in_memory(session.id, session.model_dump())
             await self.execute_commands(await self.parse_response(model_response))
@@ -169,9 +169,11 @@ class LearningInterface:
         phase = course.topics[session.progress.topic_id].modules[session.progress.module_id].phases[phase_id]
         session.progress.phase_id = phase_id
         user = self.db.get_user(session.user_id)
-        system_instructions = None
-        if session.status == SessionStatus.NOT_STARTED:
+        if not session.system_instructions:
             system_instructions = prompts.get_learning_interface_system_prompt(course.description, user)
+            session.system_instructions = system_instructions
+        system_instructions = session.system_instructions
+        if session.status == SessionStatus.NOT_STARTED:
             session.status = SessionStatus.ACTIVE
             session.previous_response_id = None
             session.checkpoint_response_id = None

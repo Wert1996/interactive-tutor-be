@@ -1,3 +1,4 @@
+from functools import cache
 import os
 from elevenlabs.client import AsyncElevenLabs
 
@@ -16,6 +17,7 @@ class ElevenLabsResource:
     def client(self):
         return self._eleven
     
+    @cache
     async def generate_speech(self, text: str, voice_id: str):
         return self._eleven.text_to_speech.convert(
             text=text,
