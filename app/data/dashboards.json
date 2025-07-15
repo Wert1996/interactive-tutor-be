@@ -1,0 +1,184 @@
+{
+    "wert": {
+        "user_id": "wert",
+        "user_stats": {
+            "streak": 12,
+            "total_learning_time": 145.5,
+            "overall_completion_rate": 0.78,
+            "total_lessons_started": 25,
+            "average_session_time": 23.4,
+            "learning_insights": "Shows strong progress in mathematical concepts and creative problem-solving. Recommended to focus more on communication skills and emotional intelligence development.",
+            "skill_stats_history": [
+                {
+                    "mastery_score": 0.65,
+                    "retention_score": 0.72,
+                    "critical_thinking_score": 0.68,
+                    "problem_solving_score": 0.74,
+                    "creativity_score": 0.81,
+                    "communication_score": 0.52,
+                    "self_awareness_score": 0.58,
+                    "social_skills_score": 0.45,
+                    "emotional_intelligence_score": 0.49
+                },
+                {
+                    "mastery_score": 0.72,
+                    "retention_score": 0.76,
+                    "critical_thinking_score": 0.71,
+                    "problem_solving_score": 0.79,
+                    "creativity_score": 0.85,
+                    "communication_score": 0.58,
+                    "self_awareness_score": 0.62,
+                    "social_skills_score": 0.51,
+                    "emotional_intelligence_score": 0.55
+                }
+            ],
+            "skill_stats_aggregate": {
+                "mastery_score": 0.75,
+                "retention_score": 0.78,
+                "critical_thinking_score": 0.73,
+                "problem_solving_score": 0.82,
+                "creativity_score": 0.87,
+                "communication_score": 0.61,
+                "self_awareness_score": 0.64,
+                "social_skills_score": 0.54,
+                "emotional_intelligence_score": 0.58
+            }
+        },
+        "session_stats": [
+            {
+                "session_id": "session_001",
+                "date": "2024-01-15T14:30:00Z",
+                "mastery_score": 0.82,
+                "completion": 0.95,
+                "session_time": 28.5,
+                "engagement_score": 0.88,
+                "questions_answered": 15,
+                "questions_asked": 3,
+                "comprehension_score": 0.84,
+                "topic_wise_mastery": {
+                    "algebra": 0.89,
+                    "geometry": 0.76,
+                    "problem_solving": 0.81
+                },
+                "skill_stats": {
+                    "mastery_score": 0.82,
+                    "retention_score": 0.79,
+                    "critical_thinking_score": 0.75,
+                    "problem_solving_score": 0.87,
+                    "creativity_score": 0.91,
+                    "communication_score": 0.64,
+                    "self_awareness_score": 0.67,
+                    "social_skills_score": 0.56,
+                    "emotional_intelligence_score": 0.61
+                }
+            },
+            {
+                "session_id": "session_002",
+                "date": "2024-01-16T15:45:00Z",
+                "mastery_score": 0.76,
+                "completion": 0.88,
+                "session_time": 32.1,
+                "engagement_score": 0.82,
+                "questions_answered": 12,
+                "questions_asked": 5,
+                "comprehension_score": 0.78,
+                "topic_wise_mastery": {
+                    "reading_comprehension": 0.83,
+                    "vocabulary": 0.71,
+                    "creative_writing": 0.74
+                },
+                "skill_stats": {
+                    "mastery_score": 0.76,
+                    "retention_score": 0.74,
+                    "critical_thinking_score": 0.72,
+                    "problem_solving_score": 0.79,
+                    "creativity_score": 0.85,
+                    "communication_score": 0.69,
+                    "self_awareness_score": 0.63,
+                    "social_skills_score": 0.58,
+                    "emotional_intelligence_score": 0.57
+                }
+            },
+            {
+                "session_id": "session_003",
+                "date": "2024-01-17T16:20:00Z",
+                "mastery_score": 0.71,
+                "completion": 0.72,
+                "session_time": 19.8,
+                "engagement_score": 0.75,
+                "questions_answered": 8,
+                "questions_asked": 2,
+                "comprehension_score": 0.69,
+                "topic_wise_mastery": {
+                    "science": 0.68,
+                    "experiments": 0.74,
+                    "hypothesis": 0.71
+                },
+                "skill_stats": {
+                    "mastery_score": 0.71,
+                    "retention_score": 0.76,
+                    "critical_thinking_score": 0.73,
+                    "problem_solving_score": 0.78,
+                    "creativity_score": 0.84,
+                    "communication_score": 0.55,
+                    "self_awareness_score": 0.61,
+                    "social_skills_score": 0.49,
+                    "emotional_intelligence_score": 0.54
+                }
+            }
+        ],
+        "parent_stats": {
+            "recommendation_completion": 0.67,
+            "recommended_activities": [
+                {
+                    "activity_name": "Family Discussion Time",
+                    "activity_description": "Engage in 15-minute daily conversations about what your child learned, encouraging them to explain concepts in their own words",
+                    "activity_type": "communication",
+                    "activity_duration": 15.0,
+                    "objectives": [
+                        "Improve communication skills",
+                        "Enhance retention through explanation",
+                        "Build confidence in expressing ideas"
+                    ],
+                    "activity_status": "completed"
+                },
+                {
+                    "activity_name": "Emotion Mapping Exercise",
+                    "activity_description": "Help your child identify and name emotions during different learning scenarios to build emotional intelligence",
+                    "activity_type": "emotional_development",
+                    "activity_duration": 20.0,
+                    "objectives": [
+                        "Develop emotional awareness",
+                        "Improve self-regulation",
+                        "Enhance emotional vocabulary"
+                    ],
+                    "activity_status": "completed"
+                },
+                {
+                    "activity_name": "Peer Learning Playdate",
+                    "activity_description": "Organize a learning session with another child where they can teach each other different topics",
+                    "activity_type": "social_learning",
+                    "activity_duration": 45.0,
+                    "objectives": [
+                        "Develop social skills",
+                        "Practice communication",
+                        "Learn collaborative problem-solving"
+                    ],
+                    "activity_status": "not_completed"
+                },
+                {
+                    "activity_name": "Real-World Math Application",
+                    "activity_description": "Involve your child in cooking or shopping activities that require mathematical calculations and measurements",
+                    "activity_type": "practical_application",
+                    "activity_duration": 30.0,
+                    "objectives": [
+                        "Apply mathematical concepts",
+                        "Connect learning to real life",
+                        "Build confidence in problem-solving"
+                    ],
+                    "activity_status": "not_completed"
+                }
+            ]
+        }
+    }
+}

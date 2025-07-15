@@ -5,6 +5,8 @@ from app.routes.websocket_routes import router as websocket_router
 from app.routes.session_routes import router as session_router
 from app.routes.course_routes import router as course_router
 from app.routes.user_routes import router as user_router
+from app.routes.dashboard import router as dashboard_router
+
 
 # Configure logging
 logging.basicConfig(
@@ -37,6 +39,7 @@ app.include_router(websocket_router)
 app.include_router(session_router)
 app.include_router(course_router)
 app.include_router(user_router)
+app.include_router(dashboard_router)
 
 @app.get("/")
 async def root():

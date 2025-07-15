@@ -4,6 +4,7 @@ import os
 from typing import Any, Dict, Union
 
 from app.models.course import Course
+from app.models.dashboard import Dashboard
 from app.models.session import Session
 from app.models.user import User
 from app.models.game import Game
@@ -39,6 +40,7 @@ class Db:
         self.courses = load_json_data("app/data/courses.json")
         self.sessions = load_json_data("app/data/sessions.json")
         self.games = load_json_data("app/data/games.json")
+        self.reports = load_json_data("app/data/dashboards.json")
 
     def get_session(self, session_id: str):
         session_json = self.sessions.get(session_id, None)
@@ -85,3 +87,9 @@ class Db:
         if not game_json:
             return None
         return Game(**game_json)
+    
+    def get_dashboard(self, user_id: str):
+        dashboard_json = self.reports.get(user_id, None)
+        if not dashboard_json:
+            return None
+        return Dashboard(**dashboard_json)
