@@ -11,6 +11,52 @@
           "description": "Introduction to basic financial concepts and why they matter",
           "modules": [
             {
+              "title": "Start with a game",
+              "description": "Start with a game",
+              "phases": [
+                {
+                  "type": "content",
+                  "content": [
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Let's start with a game. This game will help you understand the basics of financial literacy. You might struggle at first, but at the end of this course, you will understand the concepts at a much deeper level."
+                      }
+                    },
+                    {
+                      "command_type": "WHITEBOARD",
+                      "payload": {
+                        "html": "<h1>Coffee Shop Budget Master</h1><br/><h2>Game Mechanics Overview</h2><div style='background: #f5f5f5; padding: 15px; border-radius: 8px;'><h3>🎯 Starting Conditions</h3><ul><li>Initial Budget: $100</li><li>Empty Inventory</li><li>Daily Sales Goal to Meet</li></ul><h3>🛒 Supply Management</h3><ul><li>Coffee Beans, Milk, Sugar, Cups</li><li>Monitor stock levels</li><li>Purchase supplies as needed</li></ul><h3>💰 Customer Orders</h3><ul><li>Different drink types</li><li>Varying payment amounts</li><li>Serve based on available supplies</li></ul><h3>📊 Financial Tracking</h3><ul><li><strong>Income:</strong> Customer payments</li><li><strong>Expenses:</strong> Supply purchases</li><li><strong>Profit:</strong> Income - Expenses</li></ul><h3>🎓 Learning Moments</h3><ul><li>'Budget Detective Moments' when mistakes happen</li><li>Real-time financial decision making</li></ul></div>"
+                      }
+                    },
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Coffee Shop Budget Master is a fun game where you learn budgeting by running your own coffee shop! You start with $100 and need to buy supplies like coffee beans, milk, sugar, and cups to serve customers. Each customer wants different drinks and pays different amounts - your job is to manage your money wisely, keep enough supplies in stock, and try to reach your daily sales goal. The game teaches you about income, expenses, profit, and making smart financial decisions. When you make mistakes, the game celebrates them as 'Budget Detective Moments' to help you learn. Just buy supplies, open your shop, serve customers, and watch your money grow while learning valuable budgeting skills!"
+                      }
+                    },
+                    {
+                      "command_type": "GAME",
+                      "payload": {
+                        "game_id": "coffee-shop-financial-literacy"
+                      }
+                    },
+                    {
+                      "command_type": "TEACHER_SPEECH",
+                      "payload": {
+                        "text": "Seems like you've tried out the game. So... how was it ?"
+                      }
+                    },
+                    {
+                      "command_type": "WAIT_FOR_STUDENT",
+                      "payload": {
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "title": "Introduction to Financial Literacy",
               "description": "Welcome to the course and understanding what financial literacy means",
               "phases": [

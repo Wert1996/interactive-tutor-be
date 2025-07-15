@@ -6,6 +6,7 @@ from typing import Any, Dict, Union
 from app.models.course import Course
 from app.models.session import Session
 from app.models.user import User
+from app.models.game import Game
 
 
 def load_json_data(file_path: str) -> Dict[str, Any]:
@@ -37,6 +38,7 @@ class Db:
         self.users = load_json_data("app/data/users.json")
         self.courses = load_json_data("app/data/courses.json")
         self.sessions = load_json_data("app/data/sessions.json")
+        self.games = load_json_data("app/data/games.json")
 
     def get_session(self, session_id: str):
         session_json = self.sessions.get(session_id, None)
@@ -77,3 +79,9 @@ class Db:
         if not course_json:
             return None
         return Course(**course_json)
+    
+    def get_game(self, game_id: str):
+        game_json = self.games.get(game_id, None)
+        if not game_json:
+            return None
+        return Game(**game_json)

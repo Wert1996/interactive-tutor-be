@@ -9,7 +9,7 @@ from fastapi import WebSocket
 from app.dao.db import Db
 from app.models.course import (
     AckPayload, BinaryChoiceQuestionPayload, Command, CommandType, Course, MultipleChoiceQuestionPayload, PhaseType,
-    TeacherSpeechPayload, ClassmateSpeechPayload, WhiteboardPayload, WaitForStudentPayload
+    TeacherSpeechPayload, ClassmateSpeechPayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
 )
 from app.models.session import Session, SessionStatus
 from app.resources.elevenlabs import generate_speech
@@ -209,11 +209,20 @@ class LearningInterface:
         commands = []
         while response_content:
             if response_content.startswith("<FINISH_MODULE/>"):
-                commands.append(Command(command_type=CommandType.FINISH_MODULE, payload=WaitForStudentPayload()))
+                commands.append(Command(command_type=CommandType.FINISH_MODULE, payload=AckPayload()))
                 response_content = response_content[len("<FINISH_MODULE/>"):]
             elif response_content.startswith("<ACKNOWLEDGE/>"):
                 commands.append(Command(command_type=CommandType.ACKNOWLEDGE, payload=AckPayload()))
                 response_content = response_content[len("<ACKNOWLEDGE/>"):]
+            elif response_content.startswith("<WAIT_FOR_STUDENT/>"):
+                commands.append(Command(command_type=CommandType.WAIT_FOR_STUDENT, payload=WaitForStudentPayload()))
+                response_content = response_content[len("<WAIT_FOR_STUDENT/>"):]
+            elif response_content.startswith("<GAME>"):
+                game_end = response_content.find("</GAME>")
+                game_id = response_content[len("<GAME>"):game_end]
+                game_payload = GamePayload(game_id=game_id, code="")  # code will be filled in execute_commands
+                commands.append(Command(command_type=CommandType.GAME, payload=game_payload))
+                response_content = response_content[game_end + len("</GAME>"):]
             elif response_content.startswith("<MCQ_QUESTION>"):
                 mcq_question_start = response_content.find("</MCQ_QUESTION>")
                 mcq_question_content = response_content[len("<MCQ_QUESTION>"):mcq_question_start]
@@ -262,7 +271,9 @@ class LearningInterface:
                     audio_bytes = await generate_speech(command.payload.text, "f2yUVfK5jdm78zlpcZ8C")
                     # Encode audio bytes to base64 string
                     command.payload.audio_bytes = base64.b64encode(audio_bytes).decode('utf-8')
-                        
+                elif command.command_type == CommandType.GAME:
+                    game = self.db.get_game(command.payload.game_id)
+                    command.payload.code = game.code
                 await self.websocket.send_json({
                     "type": "command",
                     "command": command.model_dump()

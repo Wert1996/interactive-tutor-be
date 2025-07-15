@@ -13,6 +13,7 @@ class CommandType(str, Enum):
     WAIT_FOR_STUDENT = "WAIT_FOR_STUDENT"
     FINISH_MODULE = "FINISH_MODULE"
     ACKNOWLEDGE = "ACKNOWLEDGE"
+    GAME = "GAME"
 
 class PhaseType(str, Enum):
     CONTENT = "content"
@@ -46,6 +47,10 @@ class BinaryChoiceQuestionPayload(BaseModel):
     # correct is either "left" or "right"
     correct: str 
 
+class GamePayload(BaseModel):
+    game_id: str
+    code: Optional[str] = None
+
 class WaitForStudentPayload(BaseModel):
     pass
 
@@ -62,6 +67,7 @@ class Command(BaseModel):
         BinaryChoiceQuestionPayload,
         WaitForStudentPayload,
         AckPayload,
+        GamePayload,
         Dict[str, Any]
     ]
     
@@ -82,6 +88,8 @@ class Command(BaseModel):
             return f"<FINISH_MODULE/>"
         elif self.command_type == CommandType.ACKNOWLEDGE:
             return f"<ACKNOWLEDGE/>"
+        elif self.command_type == CommandType.GAME:
+            return f"<GAME>{self.payload.game_id}</GAME>"
 
 class Phase(BaseModel):
     type: PhaseType
