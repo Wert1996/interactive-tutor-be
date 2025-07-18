@@ -1,17 +1,18 @@
 import asyncio
 import json
 import base64
-from typing import Dict, Any, Union, List
+from typing import Dict, Any, Optional, Union, List
 import logging
 from datetime import datetime
 from fastapi import WebSocket
 
 from app.dao.db import Db
+from app.logic.dashboard import DashboardBuilder
 from app.models.course import (
     AckPayload, BinaryChoiceQuestionPayload, Command, CommandType, Course, MultipleChoiceQuestionPayload, PhaseType,
     TeacherSpeechPayload, ClassmateSpeechPayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
 )
-from app.models.session import Session, SessionStatus
+from app.models.session import Event, Session, SessionStatus
 from app.resources.elevenlabs import generate_speech
 from app.resources.openai import create_response, transcribe_audio
 from app.utils import prompts
@@ -23,6 +24,31 @@ class LearningInterface:
         self.db = Db.get_instance()
         self.websocket = websocket
     
+    def log_event(self, session: Session, event_type: str, data: Optional[dict] = None):
+        session.event_logs.append(Event(type=event_type, data=data, timestamp=datetime.now().isoformat()))
+        self.db.update_session_in_memory(session.id, session.model_dump())
+
+    """
+    Validate and sanitize the session
+    """
+    def validate_inputs(self, session_id: str):
+        session_data = self.db.get_session(session_id)
+        if not session_data:
+            raise ValueError(f"Session with id {session_id} not found")
+        course = self.db.get_course(session_data.course_id)
+        if not course:
+            raise ValueError(f"Course with id {session_data.get('course_id', '')} not found")
+        return session_data, course
+
+    async def handle_error(self, session_data: Session, error_message: str):
+        await self.websocket.send_json({
+            "type": "error",
+            "message": error_message,
+            "timestamp": datetime.now().isoformat()
+        })
+        if session_data:
+            self.log_event(session_data, "error", {"message": error_message})
+
     async def process_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """
         Process incoming WebSocket messages and return appropriate responses.
@@ -39,20 +65,15 @@ class LearningInterface:
             elif message_type == "student_interaction":
                 await self._handle_student_interaction(message)
             else:
-                await self.websocket.send_json({
-                    "type": "error",
-                    "message": f"Unknown message type: {message_type}",
-                    "timestamp": datetime.now().isoformat()
-                })   
+                await self.handle_error(None, f"Unknown message type: {message_type}")
         except Exception as e:
             logger.error(f"Error in process_message: {str(e)}")
-            await self.websocket.send_json({
-                "type": "error",
-                "message": f"Internal error: {str(e)}",
-                "timestamp": datetime.now().isoformat()
-            })
+            await self.handle_error(None, f"Internal error: {str(e)}")
     
     async def _handle_ping(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        session_id = message.get("session_id", "")
+        session, _ = self.validate_inputs(session_id)
+        self.log_event(session, "ping", {})
         await self.websocket.send_json({
             "type": "pong",
             "message": "Server is alive",
@@ -61,22 +82,8 @@ class LearningInterface:
     
     async def _handle_start_session(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session_data = self.db.get_session(session_id)
-        if not session_data:
-            await self.websocket.send_json({
-                "type": "error",
-                "message": f"Session with id {session_id} not found",
-                "timestamp": datetime.now().isoformat()
-            })
-            return
-        course = self.db.get_course(session_data.course_id)
-        if not course:
-            await self.websocket.send_json({
-                "type": "error",
-                "message": f"Course with id {session_data.get('course_id', '')} not found",
-                "timestamp": datetime.now().isoformat()
-            })
-            return
+        session_data, course = self.validate_inputs(session_id)
+        self.log_event(session_data, "start_session", {})
         await self.start_phase(session_data, course)
     
     def progress_to_next_phase(self, session: Session, course: Course):
@@ -101,25 +108,11 @@ class LearningInterface:
 
     async def _handle_next_phase(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session = self.db.get_session(session_id)
-        if not session:
-            await self.websocket.send_json({
-                "type": "error",
-                "message": f"Session with id {session_id} not found",
-            })
-            return
-        course = self.db.get_course(session.course_id)
-        if not course:
-            await self.websocket.send_json({
-                "type": "error",
-                "message": f"Course with id {session.course_id} not found",
-            })
-            return
+        session, course = self.validate_inputs(session_id)
         if not self.progress_to_next_phase(session, course):
             await self.finish_module(session, course)
         else:
             session.checkpoint_response_id = session.previous_response_id
-            self.db.update_session_in_memory(session.id, session.model_dump())
             await self.start_phase(session, course)
 
     async def _handle_student_interaction(self, message: Dict[str, Any]) -> Dict[str, Any]:
@@ -143,6 +136,7 @@ class LearningInterface:
             audio_bytes = interaction.get("audio_bytes", None)
             text = await transcribe_audio(audio_bytes)
             if text:
+                interaction["transcription"] = text
                 await self.websocket.send_json({
                     "type": "student_speech",
                     "text": text
@@ -150,14 +144,14 @@ class LearningInterface:
                 text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
                 model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
                 session.previous_response_id = model_response.id
-                self.db.update_session_in_memory(session.id, session.model_dump())
-                await self.execute_commands(await self.parse_response(model_response))
+                self.log_event(session, "student_interaction", {"interaction": interaction})
+                await self.execute_commands(await self.parse_response(model_response), session)
         elif interaction.get("type") in ["mcq_question", "binary_choice_question"]:
             text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Feel free to use whiteboard/teacher/classmate speech and other commands. Emit FINISH_MODULE if we can proceed."
             model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
             session.previous_response_id = model_response.id
-            self.db.update_session_in_memory(session.id, session.model_dump())
-            await self.execute_commands(await self.parse_response(model_response))
+            self.log_event(session, "student_interaction", {"interaction": interaction})
+            await self.execute_commands(await self.parse_response(model_response), session)
         else:
             await self.websocket.send_json({
                 "type": "error",
@@ -168,39 +162,39 @@ class LearningInterface:
         phase_id = session.progress.phase_id if session.progress.phase_id is not None else 0
         phase = course.topics[session.progress.topic_id].modules[session.progress.module_id].phases[phase_id]
         session.progress.phase_id = phase_id
-        user = self.db.get_user(session.user_id)
         if not session.system_instructions:
-            system_instructions = prompts.get_learning_interface_system_prompt(course.description, user)
-            session.system_instructions = system_instructions
-        system_instructions = session.system_instructions
+            # This does not mean that the session is not started. Dashboard building clears up the system instructions
+            user = self.db.get_user(session.user_id)
+            session.system_instructions = prompts.get_learning_interface_system_prompt(course.description, user)
         if session.status == SessionStatus.NOT_STARTED:
             session.status = SessionStatus.ACTIVE
             session.previous_response_id = None
             session.checkpoint_response_id = None
         else:
             session.previous_response_id = session.checkpoint_response_id
-        self.db.update_session_in_memory(session.id, session.model_dump())
+        self.log_event(session, "start_phase", {"progress": session.progress.model_dump()})
         content_string = "".join([cmd.to_string() for cmd in phase.content]) if phase.content else None
         phase_update_prompt = prompts.phase_update_prompt(content_string, phase.instruction)
         if phase.type == PhaseType.CONTENT:
-            await self.execute_commands(phase.content)  
-        if system_instructions:  
-            response = await create_response(message=phase_update_prompt, instructions=system_instructions, previous_response_id=session.previous_response_id)
-        else:
-            response = await create_response(message=phase_update_prompt, previous_response_id=session.previous_response_id)
+            await self.execute_commands(phase.content, session)  
+        response = await create_response(message=phase_update_prompt, instructions=session.system_instructions, previous_response_id=session.previous_response_id)
         session.previous_response_id = response.id
         self.db.update_session_in_memory(session.id, session.model_dump())
         content = await self.parse_response(response)
-        await self.execute_commands(content)
+        await self.execute_commands(content, session)
     
     async def finish_module(self, session: Session, course: Course):
         session.status = SessionStatus.COMPLETED
+        self.log_event(session, "finish_module", {})
         self.db.update_session(session.id, session.model_dump())
         # Can add some personalised feedback and messages here.
         await self.websocket.send_json({
             "type": "finish_module",
             "message": "Module finished",
         })
+        dashboard_builder = DashboardBuilder(session.user_id)
+        # Build dashboard upon session completion
+        await dashboard_builder.build_dashboard()
 
     async def parse_response(self, response):
         # This implementation is for the normal request-response flow. Streaming will be handled later.
@@ -260,7 +254,7 @@ class LearningInterface:
                 response_content = response_content[1:]
         return commands
     
-    async def execute_commands(self, commands: List[Command]):
+    async def execute_commands(self, commands: List[Command], session: Session):
         for command in commands:
             try:
                 if command.command_type == CommandType.TEACHER_SPEECH:
@@ -278,10 +272,7 @@ class LearningInterface:
                     "type": "command",
                     "command": command.model_dump()
                 })
+                self.log_event(session, "execute_command", {"command": command.model_dump()})
             except Exception as e:
                 logger.error(f"Error executing command {command.command_type}: {str(e)}")
-                await self.websocket.send_json({
-                    "type": "error",
-                    "message": f"Error executing command: {str(e)}",
-                    "timestamp": datetime.now().isoformat()
-                })
+                await self.handle_error(None, f"Error executing command: {str(e)}")

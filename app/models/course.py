@@ -108,6 +108,11 @@ class CourseTopic(BaseModel):
     description: str
     modules: Optional[List[Module]] = None
 
+class CourseStats(BaseModel):
+    total_topics: int
+    total_modules: int
+    total_phases: int
+
 class Course(BaseModel):
     id: str
     title: str
@@ -115,6 +120,7 @@ class Course(BaseModel):
     category: str
     estimatedDuration: str
     topics: Optional[List[CourseTopic]] = None
+    stats: Optional[CourseStats] = None
 
 
 class CreateCourseRequest(BaseModel):

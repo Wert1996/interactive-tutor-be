@@ -50,7 +50,7 @@ async def create_session(request: CreateSessionRequest):
         "id": session_id,
         "user_id": request.user_id,
         "course_id": request.course_id,
-        "created_at": datetime.utcnow().isoformat(),
+        "created_at": datetime.now().isoformat(),
         "status": SessionStatus.NOT_STARTED.value,
         "progress": {
             "topic_id": request.topic_id,

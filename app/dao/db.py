@@ -93,3 +93,10 @@ class Db:
         if not dashboard_json:
             return None
         return Dashboard(**dashboard_json)
+    
+    def update_dashboard(self, user_id: str, dashboard_data: Dict[str, Any]):
+        self.reports[user_id] = dashboard_data
+        save_json_data("app/data/dashboards.json", self.reports)
+
+    def get_sessions_by_user_id(self, user_id: str):
+        return [Session(**session_json) for session_json in self.sessions.values() if session_json.get("user_id") == user_id]

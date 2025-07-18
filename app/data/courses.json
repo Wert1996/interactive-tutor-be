@@ -5,6 +5,11 @@
       "description": "Master the fundamentals of personal finance and build a secure financial future",
       "category": "Finance",
       "estimatedDuration": "3-4 hours",
+      "stats": {
+        "total_topics": 4,
+        "total_modules": 6,
+        "total_phases": 6
+      },
       "topics": [
         {
           "title": "Financial Literacy Fundamentals",
