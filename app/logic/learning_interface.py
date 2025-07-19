@@ -9,8 +9,8 @@ from fastapi import WebSocket
 from app.dao.db import Db
 from app.logic.dashboard import DashboardBuilder
 from app.models.course import (
-    AckPayload, BinaryChoiceQuestionPayload, Command, CommandType, Course, MultipleChoiceQuestionPayload, PhaseType,
-    TeacherSpeechPayload, ClassmateSpeechPayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
+    AckPayload, BinaryChoiceQuestionPayload, ClassmatePointPayload, Command, CommandType, Course, MultipleChoiceQuestionPayload, PhaseType, StudentPointPayload,
+    TeacherSpeechPayload, ClassmateSpeechPayload, TwoPlayerGamePayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
 )
 from app.models.session import Event, Session, SessionStatus
 from app.resources.elevenlabs import generate_speech
@@ -64,6 +64,10 @@ class LearningInterface:
                 await self._handle_next_phase(message)
             elif message_type == "student_interaction":
                 await self._handle_student_interaction(message)
+            elif message_type == "start_two_player_game":
+                await self._handle_two_player_game(message)
+            elif message_type == "finish_two_player_game":
+                await self._handle_finish_two_player_game(message)
             else:
                 await self.handle_error(None, f"Unknown message type: {message_type}")
         except Exception as e:
@@ -141,7 +145,8 @@ class LearningInterface:
                     "type": "student_speech",
                     "text": text
                 })
-                text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
+                # text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
+                text = f"Student has said: {text}"
                 model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
                 session.previous_response_id = model_response.id
                 self.log_event(session, "student_interaction", {"interaction": interaction})
@@ -157,6 +162,29 @@ class LearningInterface:
                 "type": "error",
                 "message": "Unknown message type",
             })
+
+    async def _handle_two_player_game(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        session_id = message.get("session_id", "")
+        session, _ = self.validate_inputs(session_id)
+        two_player_game = message.get("payload", {})
+        two_player_game_payload = TwoPlayerGamePayload(**two_player_game)
+        system_prompt = prompts.get_two_player_game_system_prompt(two_player_game_payload)
+        session.system_instructions = system_prompt
+        response = await create_response(message="Start the game with a small, crisp announcement speech from the teacher. Then, emit the CLASSMATE_SPEECH command with the first speech from the classmate.", instructions=session.system_instructions, previous_response_id=session.previous_response_id)
+        session.previous_response_id = response.id
+        self.db.update_session_in_memory(session.id, session.model_dump())
+        content = await self.parse_response(response)
+        await self.execute_commands(content, session)
+
+    async def _handle_finish_two_player_game(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        session_id = message.get("session_id", "")
+        session, _ = self.validate_inputs(session_id)
+        response = await create_response(message="The game timer has now ended. End the game with a small, crisp concluding speech from the teacher. Emit <FINISH_MODULE/> at the end.", instructions=session.system_instructions, previous_response_id=session.previous_response_id)
+        session.previous_response_id = response.id
+        self.db.update_session_in_memory(session.id, session.model_dump())
+        content = await self.parse_response(response)
+        await self.execute_commands(content, session)
+        session.system_instructions = None
 
     async def start_phase(self, session: Session, course: Course):
         phase_id = session.progress.phase_id if session.progress.phase_id is not None else 0
@@ -249,6 +277,18 @@ class LearningInterface:
                 binary_choice_question = BinaryChoiceQuestionPayload(**binary_choice_question_json)
                 commands.append(Command(command_type=CommandType.BINARY_CHOICE_QUESTION, payload=binary_choice_question))
                 response_content = response_content[binary_choice_question_start + len("</BINARY_CHOICE_QUESTION>"):]
+            elif response_content.startswith("<STUDENT_POINT>"):
+                student_point_start = response_content.find("</STUDENT_POINT>")
+                student_point_content = response_content[len("<STUDENT_POINT>"):student_point_start]
+                student_point_payload = StudentPointPayload(point=student_point_content)
+                commands.append(Command(command_type=CommandType.STUDENT_POINT, payload=student_point_payload))
+                response_content = response_content[student_point_start + len("</STUDENT_POINT>"):]
+            elif response_content.startswith("<CLASSMATE_POINT>"):
+                classmate_point_start = response_content.find("</CLASSMATE_POINT>")
+                classmate_point_content = response_content[len("<CLASSMATE_POINT>"):classmate_point_start]
+                classmate_point_payload = ClassmatePointPayload(point=classmate_point_content)
+                commands.append(Command(command_type=CommandType.CLASSMATE_POINT, payload=classmate_point_payload))
+                response_content = response_content[classmate_point_start + len("</CLASSMATE_POINT>"):]
             else:
                 # Skip unknown content
                 response_content = response_content[1:]

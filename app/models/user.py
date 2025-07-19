@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 from app.models.dashboard import UserStats
@@ -12,4 +13,4 @@ class User(BaseModel):
     id: str
     name: str
     onboarding_data: OnboardingData
-    user_stats: UserStats
+    user_stats: Optional[UserStats] = None

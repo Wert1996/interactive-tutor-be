@@ -14,6 +14,10 @@ class CommandType(str, Enum):
     FINISH_MODULE = "FINISH_MODULE"
     ACKNOWLEDGE = "ACKNOWLEDGE"
     GAME = "GAME"
+    # These are interactive games between two students, where they play against each other.
+    TWO_PLAYER_GAME = "TWO_PLAYER_GAME"
+    STUDENT_POINT = "STUDENT_POINT"
+    CLASSMATE_POINT = "CLASSMATE_POINT"
 
 class PhaseType(str, Enum):
     CONTENT = "content"
@@ -57,6 +61,23 @@ class WaitForStudentPayload(BaseModel):
 class AckPayload(BaseModel):
     pass
 
+class TwoPlayerGameType(str, Enum):
+    THIS_OR_THAT = "THIS_OR_THAT"
+    WOULD_YOU_RATHER = "WOULD_YOU_RATHER"
+    ELI5 = "ELI5"
+
+class TwoPlayerGamePayload(BaseModel):
+    game_type: TwoPlayerGameType
+    topic: str
+    sides: List[str]
+    chosen_side: Optional[int] = None
+
+class StudentPointPayload(BaseModel):
+    point: str
+
+class ClassmatePointPayload(BaseModel):
+    point: str
+
 class Command(BaseModel):
     command_type: CommandType
     payload: Union[
@@ -68,6 +89,9 @@ class Command(BaseModel):
         WaitForStudentPayload,
         AckPayload,
         GamePayload,
+        TwoPlayerGamePayload,
+        StudentPointPayload,
+        ClassmatePointPayload,
         Dict[str, Any]
     ]
     
@@ -90,6 +114,12 @@ class Command(BaseModel):
             return f"<ACKNOWLEDGE/>"
         elif self.command_type == CommandType.GAME:
             return f"<GAME>{self.payload.game_id}</GAME>"
+        elif self.command_type == CommandType.TWO_PLAYER_GAME:
+            return f"<TWO_PLAYER_GAME>{self.payload}</TWO_PLAYER_GAME>"
+        elif self.command_type == CommandType.STUDENT_POINT:
+            return f"<STUDENT_POINT>{self.payload.point}</STUDENT_POINT>"
+        elif self.command_type == CommandType.CLASSMATE_POINT:
+            return f"<CLASSMATE_POINT>{self.payload.point}</CLASSMATE_POINT>"
 
 class Phase(BaseModel):
     type: PhaseType

@@ -88,9 +88,7 @@ class OpenAIResource:
             }
             # Remove keys where value is None
             params = {k: v for k, v in params.items() if v is not None}
-            logger.info(f"Params: {params}")
             response = await self.client.responses.create(**params)
-            logger.info(f"Response: {response.id}")
             return response
         except Exception as e:
             logger.error(f"Error creating response: {e}")

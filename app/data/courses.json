@@ -8,13 +8,32 @@
       "stats": {
         "total_topics": 4,
         "total_modules": 6,
-        "total_phases": 6
+        "total_phases": 7
       },
       "topics": [
         {
           "title": "Financial Literacy Fundamentals",
           "description": "Introduction to basic financial concepts and why they matter",
           "modules": [
+            {
+              "title": "Two-Player Financial Debate",
+              "description": "Debate a challenging financial decision with a classmate",
+              "phases": [
+                {
+                  "type": "content",
+                  "content": [
+                    {
+                      "command_type": "TWO_PLAYER_GAME",
+                      "payload": {
+                        "game_type": "THIS_OR_THAT",
+                        "topic": "Birthday Money Decision",
+                        "sides": ["Spend your $50 birthday money on a cool new video game today", "Save your $50 birthday money for 6 months to buy a $100 bike"]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "title": "Start with a game",
               "description": "Start with a game",
