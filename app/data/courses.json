@@ -7,7 +7,7 @@
       "estimatedDuration": "3-4 hours",
       "stats": {
         "total_topics": 4,
-        "total_modules": 6,
+        "total_modules": 7,
         "total_phases": 7
       },
       "topics": [
@@ -15,25 +15,6 @@
           "title": "Financial Literacy Fundamentals",
           "description": "Introduction to basic financial concepts and why they matter",
           "modules": [
-            {
-              "title": "Two-Player Financial Debate",
-              "description": "Debate a challenging financial decision with a classmate",
-              "phases": [
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TWO_PLAYER_GAME",
-                      "payload": {
-                        "game_type": "THIS_OR_THAT",
-                        "topic": "Birthday Money Decision",
-                        "sides": ["Spend your $50 birthday money on a cool new video game today", "Save your $50 birthday money for 6 months to buy a $100 bike"]
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
             {
               "title": "Start with a game",
               "description": "Start with a game",
@@ -56,7 +37,7 @@
                     {
                       "command_type": "TEACHER_SPEECH",
                       "payload": {
-                        "text": "Coffee Shop Budget Master is a fun game where you learn budgeting by running your own coffee shop! You start with $100 and need to buy supplies like coffee beans, milk, sugar, and cups to serve customers. Each customer wants different drinks and pays different amounts - your job is to manage your money wisely, keep enough supplies in stock, and try to reach your daily sales goal. The game teaches you about income, expenses, profit, and making smart financial decisions. When you make mistakes, the game celebrates them as 'Budget Detective Moments' to help you learn. Just buy supplies, open your shop, serve customers, and watch your money grow while learning valuable budgeting skills!"
+                        "text": "Coffee Shop Budget Master is a fun game where you learn budgeting by running your own coffee shop! You start with $100 and need to buy supplies like coffee beans, milk, sugar, and cups to serve customers. Read the rules on the whiteboard and then start the game."
                       }
                     },
                     {
@@ -64,16 +45,35 @@
                       "payload": {
                         "game_id": "coffee-shop-financial-literacy"
                       }
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "content",
+                  "content": [
                     {
                       "command_type": "TEACHER_SPEECH",
                       "payload": {
                         "text": "Seems like you've tried out the game. So... how was it ?"
                       }
-                    },
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Two-Player Financial Debate",
+              "description": "Debate a challenging financial decision with a classmate",
+              "phases": [
+                {
+                  "type": "content",
+                  "content": [
                     {
-                      "command_type": "WAIT_FOR_STUDENT",
+                      "command_type": "TWO_PLAYER_GAME",
                       "payload": {
+                        "game_type": "THIS_OR_THAT",
+                        "topic": "Birthday Money Decision",
+                        "sides": ["Spend your $50 birthday money on a cool new video game today", "Save your $50 birthday money for 6 months to buy a $100 bike"]
                       }
                     }
                   ]

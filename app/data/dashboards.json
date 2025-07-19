@@ -7,7 +7,7 @@
             "overall_completion_rate": 0.78,
             "total_lessons_started": 25,
             "average_session_time": 23.4,
-            "learning_insights": "Shows strong progress in mathematical concepts and creative problem-solving. Recommended to focus more on communication skills and emotional intelligence development.",
+            "learning_insights": ["Shows strong progress in mathematical concepts and creative problem-solving. Recommended to focus more on communication skills and emotional intelligence development."],
             "skill_stats_history": [
                 {
                     "mastery_score": 0.65,
@@ -60,6 +60,7 @@
                     "geometry": 0.76,
                     "problem_solving": 0.81
                 },
+                "learning_insights": "Good at problem solving",
                 "skill_stats": {
                     "mastery_score": 0.82,
                     "retention_score": 0.79,
