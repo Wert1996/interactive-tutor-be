@@ -1,10 +1,11 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Dict, Any, Optional
+from typing import Dict, Any, List, Optional
 import uuid
 from datetime import datetime
 
 from app.dao.db import Db
+from app.models.character import CharacterRole
 from app.models.session import Session, SessionStatus
 
 router = APIRouter(prefix="/api/sessions", tags=["sessions"])
@@ -15,6 +16,7 @@ class CreateSessionRequest(BaseModel):
     topic_id: Optional[int] = None
     module_id: Optional[int] = None
     phase_id: Optional[int] = None
+    characters: Optional[List[str]] = None
 
 
 @router.post("/", response_model=Session)
@@ -42,6 +44,16 @@ async def create_session(request: CreateSessionRequest):
     if request.module_id is None:
         request.module_id = 0
 
+    character_names = request.characters
+    characters = db.get_characters_by_names(character_names)
+    teacher = next((character for character in characters if character.role == CharacterRole.TEACHER), None)
+    classmate = next((character for character in characters if character.role == CharacterRole.CLASSMATE), None)
+    if teacher is None or classmate is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Teacher or classmate characters '{character_names}' not selected/not found"
+        )
+
     # Generate unique session ID
     session_id = str(uuid.uuid4())
     
@@ -56,7 +68,9 @@ async def create_session(request: CreateSessionRequest):
             "topic_id": request.topic_id,
             "module_id": request.module_id,
             "phase_id": 0
-        }
+        },
+        "teacher": teacher.model_dump(),
+        "classmate": classmate.model_dump()
     }
     
     # Add session to sessions data

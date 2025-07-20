@@ -1,1 +1,102 @@
-{}
+{
+  "a8e9ffd9-136e-4239-bc95-57704b783f91": {
+    "id": "a8e9ffd9-136e-4239-bc95-57704b783f91",
+    "user_id": "wert",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-20T17:44:39.921185",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "teacher": "{\"role\":\"teacher\",\"name\":\"Professor Scroopy Noopers\",\"image_url\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJsJlfaHkxl0O2QyYEh3TZEbcyzS0WTlMtiw&s\",\"age\":987,\"gender\":\"Male\",\"voice_id\":\"\",\"personality\":\"A brilliant but very forgetful and eccentric scientist from Planet Gloop. He is a genius inventor who loves to show his students the wonders of the universe. He often takes his class on exciting field trips to friendly dimensions.\",\"background\":\"He once won the 'Galactic Inventor of the Year' award for creating a device that translated the chirps of space birds into polite compliments. Another time, he accidentally invented self-tying shoelaces that would occasionally tickle the wearer's feet. His laboratory is a marvel of organized chaos, with bubbling potions and whirring gadgets at every corner.\",\"world_description\":\"Planet Gloop is a bright, colorful world where everything is soft and bouncy. The rivers are made of slurpable fruit juice and the mountains are giant, squishy jellies.\",\"personal_life\":\"His best friend, 'Fuzzles', once helped him find his lost keys by changing colors to create a glowing arrow pointing right at them. He has a collection of 2,347 rubber ducks from different dimensions, each with a unique quack. He bakes Glimmer-berry pies every Friday, a tradition he started with his grandmother.\"}",
+    "classmate": "{\"role\":\"classmate\",\"name\":\"Noob-Noob\",\"image_url\":\"https://ih1.redbubble.net/image.2348418748.2432/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg\",\"age\":16,\"gender\":\"Male\",\"voice_id\":\"\",\"personality\":\"A kind and optimistic student who is always eager to help his friends. He is brave and believes that teamwork can solve any problem. He looks up to his teachers and wants to be an explorer when he grows up.\",\"background\":\"He once helped a baby 'Star-Whale' find its way back to its nebula. He also won a 'Junior Star Navigator' badge for charting a new, safe route through a tricky asteroid field. He joined the school to learn how to communicate with all kinds of alien species.\",\"world_description\":\"Vindican is a peaceful planet with vast libraries and observatories. The people of Vindican are dedicated to learning and exploring the universe in their beautiful, eco-friendly starships.\",\"personal_life\":\"He is building a detailed model of the 'Star-Hopper 3000', his dream starship. His pet 'Gloop', 'Sloopy', once mimicked the sound of the school bell, causing everyone to go to break an hour early. He has a pen pal from every planet in his home solar system.\"}"
+  },
+  "c7734964-efd1-4c71-8377-319a92af1aa4": {
+    "id": "c7734964-efd1-4c71-8377-319a92af1aa4",
+    "user_id": "wert",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-20T17:46:07.287992",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "teacher": "{\"role\":\"teacher\",\"name\":\"Professor Scroopy Noopers\",\"image_url\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJsJlfaHkxl0O2QyYEh3TZEbcyzS0WTlMtiw&s\",\"age\":987,\"gender\":\"Male\",\"voice_id\":\"\",\"personality\":\"A brilliant but very forgetful and eccentric scientist from Planet Gloop. He is a genius inventor who loves to show his students the wonders of the universe. He often takes his class on exciting field trips to friendly dimensions.\",\"background\":\"He once won the 'Galactic Inventor of the Year' award for creating a device that translated the chirps of space birds into polite compliments. Another time, he accidentally invented self-tying shoelaces that would occasionally tickle the wearer's feet. His laboratory is a marvel of organized chaos, with bubbling potions and whirring gadgets at every corner.\",\"world_description\":\"Planet Gloop is a bright, colorful world where everything is soft and bouncy. The rivers are made of slurpable fruit juice and the mountains are giant, squishy jellies.\",\"personal_life\":\"His best friend, 'Fuzzles', once helped him find his lost keys by changing colors to create a glowing arrow pointing right at them. He has a collection of 2,347 rubber ducks from different dimensions, each with a unique quack. He bakes Glimmer-berry pies every Friday, a tradition he started with his grandmother.\"}",
+    "classmate": "{\"role\":\"classmate\",\"name\":\"Noob-Noob\",\"image_url\":\"https://ih1.redbubble.net/image.2348418748.2432/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg\",\"age\":16,\"gender\":\"Male\",\"voice_id\":\"\",\"personality\":\"A kind and optimistic student who is always eager to help his friends. He is brave and believes that teamwork can solve any problem. He looks up to his teachers and wants to be an explorer when he grows up.\",\"background\":\"He once helped a baby 'Star-Whale' find its way back to its nebula. He also won a 'Junior Star Navigator' badge for charting a new, safe route through a tricky asteroid field. He joined the school to learn how to communicate with all kinds of alien species.\",\"world_description\":\"Vindican is a peaceful planet with vast libraries and observatories. The people of Vindican are dedicated to learning and exploring the universe in their beautiful, eco-friendly starships.\",\"personal_life\":\"He is building a detailed model of the 'Star-Hopper 3000', his dream starship. His pet 'Gloop', 'Sloopy', once mimicked the sound of the school bell, causing everyone to go to break an hour early. He has a pen pal from every planet in his home solar system.\"}"
+  },
+  "2a9c2bd9-5caf-42ca-a306-9c89cd021a69": {
+    "id": "2a9c2bd9-5caf-42ca-a306-9c89cd021a69",
+    "user_id": "wert",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-20T17:47:48.976403",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "teacher": {
+      "role": "teacher",
+      "name": "Professor Scroopy Noopers",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJsJlfaHkxl0O2QyYEh3TZEbcyzS0WTlMtiw&s",
+      "age": 987,
+      "gender": "Male",
+      "voice_id": "",
+      "personality": "A brilliant but very forgetful and eccentric scientist from Planet Gloop. He is a genius inventor who loves to show his students the wonders of the universe. He often takes his class on exciting field trips to friendly dimensions.",
+      "background": "He once won the 'Galactic Inventor of the Year' award for creating a device that translated the chirps of space birds into polite compliments. Another time, he accidentally invented self-tying shoelaces that would occasionally tickle the wearer's feet. His laboratory is a marvel of organized chaos, with bubbling potions and whirring gadgets at every corner.",
+      "world_description": "Planet Gloop is a bright, colorful world where everything is soft and bouncy. The rivers are made of slurpable fruit juice and the mountains are giant, squishy jellies.",
+      "personal_life": "His best friend, 'Fuzzles', once helped him find his lost keys by changing colors to create a glowing arrow pointing right at them. He has a collection of 2,347 rubber ducks from different dimensions, each with a unique quack. He bakes Glimmer-berry pies every Friday, a tradition he started with his grandmother."
+    },
+    "classmate": {
+      "role": "classmate",
+      "name": "Noob-Noob",
+      "image_url": "https://ih1.redbubble.net/image.2348418748.2432/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
+      "age": 16,
+      "gender": "Male",
+      "voice_id": "",
+      "personality": "A kind and optimistic student who is always eager to help his friends. He is brave and believes that teamwork can solve any problem. He looks up to his teachers and wants to be an explorer when he grows up.",
+      "background": "He once helped a baby 'Star-Whale' find its way back to its nebula. He also won a 'Junior Star Navigator' badge for charting a new, safe route through a tricky asteroid field. He joined the school to learn how to communicate with all kinds of alien species.",
+      "world_description": "Vindican is a peaceful planet with vast libraries and observatories. The people of Vindican are dedicated to learning and exploring the universe in their beautiful, eco-friendly starships.",
+      "personal_life": "He is building a detailed model of the 'Star-Hopper 3000', his dream starship. His pet 'Gloop', 'Sloopy', once mimicked the sound of the school bell, causing everyone to go to break an hour early. He has a pen pal from every planet in his home solar system."
+    }
+  },
+  "613c637f-b50a-42b4-9aff-bda3e62ae76c": {
+    "id": "613c637f-b50a-42b4-9aff-bda3e62ae76c",
+    "user_id": "wert",
+    "course_id": "financial-literacy",
+    "created_at": "2025-07-20T17:49:22.534652",
+    "status": "NOT_STARTED",
+    "progress": {
+      "topic_id": 0,
+      "module_id": 0,
+      "phase_id": 0
+    },
+    "teacher": {
+      "role": "teacher",
+      "name": "Professor Scroopy Noopers",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJsJlfaHkxl0O2QyYEh3TZEbcyzS0WTlMtiw&s",
+      "age": 987,
+      "gender": "Male",
+      "voice_id": "",
+      "personality": "A brilliant but very forgetful and eccentric scientist from Planet Gloop. He is a genius inventor who loves to show his students the wonders of the universe. He often takes his class on exciting field trips to friendly dimensions.",
+      "background": "He once won the 'Galactic Inventor of the Year' award for creating a device that translated the chirps of space birds into polite compliments. Another time, he accidentally invented self-tying shoelaces that would occasionally tickle the wearer's feet. His laboratory is a marvel of organized chaos, with bubbling potions and whirring gadgets at every corner.",
+      "world_description": "Planet Gloop is a bright, colorful world where everything is soft and bouncy. The rivers are made of slurpable fruit juice and the mountains are giant, squishy jellies.",
+      "personal_life": "His best friend, 'Fuzzles', once helped him find his lost keys by changing colors to create a glowing arrow pointing right at them. He has a collection of 2,347 rubber ducks from different dimensions, each with a unique quack. He bakes Glimmer-berry pies every Friday, a tradition he started with his grandmother."
+    },
+    "classmate": {
+      "role": "classmate",
+      "name": "Amuni",
+      "image_url": "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-adf0-622f-9b5f-99b48884d4b9/raw?se=2025-07-20T12%3A28%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=0d301eb0-2c4e-5301-9cf7-1c411fdd4d56&skoid=e9d2f8b1-028a-4cff-8eb1-d0e66fbefcca&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-20T01%3A22%3A19Z&ske=2025-07-21T01%3A22%3A19Z&sks=b&skv=2024-08-04&sig=hpIlOcfoPK%2B6/nUHEgGp7YuV15JRNX9ffq1t8GICqmE%3D",
+      "age": 15,
+      "gender": "Female",
+      "voice_id": "",
+      "personality": "A quiet and gentle student from the planet Gazorpazorp. She is incredibly strong but very shy. She is a talented artist and often expresses herself through her drawings instead of words.",
+      "background": "She once built a beautiful, full-sized bridge out of a single, continuous piece of 'Glimmer-wood', a native Gazorpian tree. She also designed and wove a tapestry that depicted the entire history of her planet, which now hangs in the Great Hall of Gazorpazorp.",
+      "world_description": "Gazorpazorp is a beautiful planet with towering, elegant cities made of shimmering crystal, all built by the females. The males of her species are known for their beautiful music and poetry.",
+      "personal_life": "Her sculptures are so detailed that they look like they could come to life. Her pet 'Fluffy-beast' is a small, furry creature that purrs when she's happy and hums a calming tune when she's sad. She is secretly writing and illustrating a book of stories about her homeworld."
+    }
+  }
+}

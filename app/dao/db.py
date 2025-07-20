@@ -1,8 +1,9 @@
 
 import json
 import os
-from typing import Any, Dict, Union
+from typing import Any, Dict, List, Union
 
+from app.models.character import Character
 from app.models.course import Course
 from app.models.dashboard import Dashboard
 from app.models.session import Session
@@ -41,6 +42,7 @@ class Db:
         self.sessions = load_json_data("app/data/sessions.json")
         self.games = load_json_data("app/data/games.json")
         self.reports = load_json_data("app/data/dashboards.json")
+        self.characters = load_json_data("app/data/characters.json")
 
     def get_session(self, session_id: str):
         session_json = self.sessions.get(session_id, None)
@@ -100,3 +102,9 @@ class Db:
 
     def get_sessions_by_user_id(self, user_id: str):
         return [Session(**session_json) for session_json in self.sessions.values() if session_json.get("user_id") == user_id]
+
+    def get_characters_by_names(self, character_names: List[str]):
+        return [Character(**character_json) for character_json in self.characters if character_json.get("name") in character_names]
+    
+    def get_all_characters(self):
+        return [Character(**character_json) for character_json in self.characters]

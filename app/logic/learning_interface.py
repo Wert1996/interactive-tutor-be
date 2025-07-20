@@ -8,6 +8,7 @@ from fastapi import WebSocket
 
 from app.dao.db import Db
 from app.logic.dashboard import DashboardBuilder
+from app.models.character import Character
 from app.models.course import (
     AckPayload, BinaryChoiceQuestionPayload, ClassmatePointPayload, Command, CommandType, Course, MultipleChoiceQuestionPayload, PhaseType, StudentPointPayload,
     TeacherSpeechPayload, ClassmateSpeechPayload, TwoPlayerGamePayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
@@ -37,8 +38,11 @@ class LearningInterface:
             raise ValueError(f"Session with id {session_id} not found")
         course = self.db.get_course(session_data.course_id)
         if not course:
-            raise ValueError(f"Course with id {session_data.get('course_id', '')} not found")
-        return session_data, course
+            raise ValueError(f"Course with id {session_data.course_id} not found")
+        characters = self.db.get_characters_by_names([session_data.teacher.name, session_data.classmate.name])
+        if not characters:
+            raise ValueError(f"Teacher or classmate characters '{session_data.teacher} or {session_data.classmate}' not found")
+        return session_data, course, characters
 
     async def handle_error(self, session_data: Session, error_message: str):
         await self.websocket.send_json({
@@ -76,7 +80,7 @@ class LearningInterface:
     
     async def _handle_ping(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session, _ = self.validate_inputs(session_id)
+        session, _, _ = self.validate_inputs(session_id)
         self.log_event(session, "ping", {})
         await self.websocket.send_json({
             "type": "pong",
@@ -86,9 +90,9 @@ class LearningInterface:
     
     async def _handle_start_session(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session_data, course = self.validate_inputs(session_id)
+        session_data, course, characters = self.validate_inputs(session_id)
         self.log_event(session_data, "start_session", {})
-        await self.start_phase(session_data, course)
+        await self.start_phase(session_data, course, characters)
     
     def progress_to_next_phase(self, session: Session, course: Course):
         phase_id = session.progress.phase_id
@@ -112,12 +116,12 @@ class LearningInterface:
 
     async def _handle_next_phase(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session, course = self.validate_inputs(session_id)
+        session, course, characters = self.validate_inputs(session_id)
         if not self.progress_to_next_phase(session, course):
             await self.finish_module(session, course)
         else:
             session.checkpoint_response_id = session.previous_response_id
-            await self.start_phase(session, course)
+            await self.start_phase(session, course, characters)
 
     async def _handle_student_interaction(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
@@ -165,7 +169,7 @@ class LearningInterface:
 
     async def _handle_two_player_game(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session, _ = self.validate_inputs(session_id)
+        session, _, _ = self.validate_inputs(session_id)
         two_player_game = message.get("payload", {})
         two_player_game_payload = TwoPlayerGamePayload(**two_player_game)
         system_prompt = prompts.get_two_player_game_system_prompt(two_player_game_payload)
@@ -178,7 +182,7 @@ class LearningInterface:
 
     async def _handle_finish_two_player_game(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
-        session, _ = self.validate_inputs(session_id)
+        session, _, _ = self.validate_inputs(session_id)
         response = await create_response(message="The game timer has now ended. End the game with a small, crisp concluding speech from the teacher. Emit <FINISH_MODULE/> at the end.", instructions=session.system_instructions, previous_response_id=session.previous_response_id)
         session.previous_response_id = response.id
         self.db.update_session_in_memory(session.id, session.model_dump())
@@ -186,14 +190,14 @@ class LearningInterface:
         await self.execute_commands(content, session)
         session.system_instructions = None
 
-    async def start_phase(self, session: Session, course: Course):
+    async def start_phase(self, session: Session, course: Course, characters: List[Character]):
         phase_id = session.progress.phase_id if session.progress.phase_id is not None else 0
         phase = course.topics[session.progress.topic_id].modules[session.progress.module_id].phases[phase_id]
         session.progress.phase_id = phase_id
         if not session.system_instructions:
             # This does not mean that the session is not started. Dashboard building clears up the system instructions
             user = self.db.get_user(session.user_id)
-            session.system_instructions = prompts.get_learning_interface_system_prompt(course.description, user)
+            session.system_instructions = prompts.get_learning_interface_system_prompt(course.description, user, characters[0], characters[1])
         if session.status == SessionStatus.NOT_STARTED:
             session.status = SessionStatus.ACTIVE
             session.previous_response_id = None

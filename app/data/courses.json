@@ -16,6 +16,16 @@
           "description": "Introduction to basic financial concepts and why they matter",
           "modules": [
             {
+              "title": "Introduction to the Course",
+              "description": "Introduction to the course, the teacher and the classmate",
+              "phases": [
+                {
+                  "type": "instruction",
+                  "instruction": "Create a casual but formal greeting for the student, where the teacher welcomes the student and introduces themselves, asks the classmate to introduce themselves. Use the whiteboard to show an introduction to the course. Then, the teacher should give a personal anecdote from their life to introduce the student to the course. Afterwards, ask the student to introduce themselves."
+                }
+              ]
+            },
+            {
               "title": "Start with a game",
               "description": "Start with a game",
               "phases": [

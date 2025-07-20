@@ -3,6 +3,7 @@ from enum import Enum
 from pydantic import BaseModel
 from typing import List, Optional
 
+from app.models.character import Character
 from app.models.dashboard import SessionStats
 
 
@@ -35,3 +36,7 @@ class Session(BaseModel):
     created_at: Optional[datetime] = None
     event_logs: Optional[List[Event]] = []
     last_alive_timestamp: Optional[datetime] = None
+    # Teacher character name
+    teacher: Optional[Character] = None
+    # Classmate character name
+    classmate: Optional[Character] = None
