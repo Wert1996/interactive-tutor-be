@@ -61,7 +61,8 @@ class Db:
         save_json_data("app/data/users.json", self.users)
 
     def update_session(self, session_id: str, session_data: Dict[str, Any]):
-        self.sessions[session_id] = session_data
+        session_data = Session(**session_data)
+        self.sessions[session_id] = session_data.model_dump()
         save_json_data("app/data/sessions.json", self.sessions)
     
     def update_session_in_memory(self, session_id: str, session_data: Union[Dict[str, Any], Session]):
