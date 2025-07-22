@@ -1,297 +1,639 @@
 {
-    "financial-literacy": {
-      "id": "financial-literacy",
-      "title": "Financial Literacy Course",
-      "description": "Master the fundamentals of personal finance and build a secure financial future",
-      "category": "Finance",
-      "estimatedDuration": "3-4 hours",
-      "stats": {
-        "total_topics": 4,
-        "total_modules": 7,
-        "total_phases": 7
+  "financial-literacy": {
+    "id": "financial-literacy",
+    "title": "Financial Literacy Course",
+    "description": "Master the fundamentals of personal finance and build a secure financial future",
+    "category": "Finance",
+    "estimatedDuration": "3-4 hours",
+    "stats": {
+      "total_topics": 4,
+      "total_modules": 7,
+      "total_phases": 7
+    },
+    "topics": [
+      {
+        "title": "Financial Literacy Fundamentals",
+        "description": "Introduction to basic financial concepts and why they matter",
+        "modules": [
+          {
+            "title": "Introduction to the Course",
+            "description": "Introduction to the course, the teacher and the classmate",
+            "phases": [
+              {
+                "type": "instruction",
+                "instruction": "Create a casual but formal greeting for the student, where the teacher welcomes the student and introduces themselves, asks the classmate to introduce themselves. Use the whiteboard to show an introduction to the course in html. Keep the html simple but neat. Then, the teacher should give a personal anecdote from their life to introduce the student to the course. Afterwards, ask the student to introduce themselves."
+              }
+            ]
+          },
+          {
+            "title": "Start with a game",
+            "description": "Start with a game",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Let's start with a game. This game will help you understand the basics of financial literacy. You might struggle at first, but at the end of this course, you will understand the concepts at a much deeper level."
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<h1>Coffee Shop Budget Master</h1><br/><h2>Game Mechanics Overview</h2><div style='background: #f5f5f5; padding: 15px; border-radius: 8px;'><h3>🎯 Starting Conditions</h3><ul><li>Initial Budget: $100</li><li>Empty Inventory</li><li>Daily Sales Goal to Meet</li></ul><h3>🛒 Supply Management</h3><ul><li>Coffee Beans, Milk, Sugar, Cups</li><li>Monitor stock levels</li><li>Purchase supplies as needed</li></ul><h3>💰 Customer Orders</h3><ul><li>Different drink types</li><li>Varying payment amounts</li><li>Serve based on available supplies</li></ul><h3>📊 Financial Tracking</h3><ul><li><strong>Income:</strong> Customer payments</li><li><strong>Expenses:</strong> Supply purchases</li><li><strong>Profit:</strong> Income - Expenses</li></ul><h3>🎓 Learning Moments</h3><ul><li>'Budget Detective Moments' when mistakes happen</li><li>Real-time financial decision making</li></ul></div>"
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Coffee Shop Budget Master is a fun game where you learn budgeting by running your own coffee shop! You start with $100 and need to buy supplies like coffee beans, milk, sugar, and cups to serve customers. Read the rules on the whiteboard and then start the game."
+                    }
+                  },
+                  {
+                    "command_type": "GAME",
+                    "payload": {
+                      "game_id": "coffee-shop-financial-literacy"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Seems like you've tried out the game. So... how was it ?"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Two-Player Financial Debate",
+            "description": "Debate a challenging financial decision with a classmate",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TWO_PLAYER_GAME",
+                    "payload": {
+                      "game_type": "THIS_OR_THAT",
+                      "topic": "Birthday Money Decision",
+                      "sides": [
+                        "Spend your $50 birthday money on a cool new video game today",
+                        "Save your $50 birthday money for 6 months to buy a $100 bike"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Introduction to Financial Literacy",
+            "description": "Welcome to the course and understanding what financial literacy means",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Hello everyone, and welcome to Financial Literacy 101! Today, we're going to start a journey to understand money better. It might sound complicated, but I promise we'll make it simple and fun."
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<h1>What is Financial Literacy?</h1><p>It's the ability to understand and effectively use various financial skills, including personal financial management, budgeting, and investing.</p>"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "So... it's like learning the secret level-up codes for money? Awesome!"
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Haha, exactly! Think of it as getting the strategy guide for your financial life. Let's get started when you're ready."
+                    }
+                  },
+                  {
+                    "command_type": "BINARY_CHOICE_QUESTION",
+                    "payload": {
+                      "question": "Saving money for that latest PS5 by collecting leftover pennies is.. ",
+                      "left": "fumble",
+                      "right": "4D chess",
+                      "correct": "right"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
-      "topics": [
-        {
-          "title": "Financial Literacy Fundamentals",
-          "description": "Introduction to basic financial concepts and why they matter",
-          "modules": [
-            {
-              "title": "Introduction to the Course",
-              "description": "Introduction to the course, the teacher and the classmate",
-              "phases": [
-                {
-                  "type": "instruction",
-                  "instruction": "Create a casual but formal greeting for the student, where the teacher welcomes the student and introduces themselves, asks the classmate to introduce themselves. Use the whiteboard to show an introduction to the course in html. Keep the html simple but neat. Then, the teacher should give a personal anecdote from their life to introduce the student to the course. Afterwards, ask the student to introduce themselves."
-                }
-              ]
-            },
-            {
-              "title": "Start with a game",
-              "description": "Start with a game",
-              "phases": [
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Let's start with a game. This game will help you understand the basics of financial literacy. You might struggle at first, but at the end of this course, you will understand the concepts at a much deeper level."
-                      }
-                    },
-                    {
-                      "command_type": "WHITEBOARD",
-                      "payload": {
-                        "html": "<h1>Coffee Shop Budget Master</h1><br/><h2>Game Mechanics Overview</h2><div style='background: #f5f5f5; padding: 15px; border-radius: 8px;'><h3>🎯 Starting Conditions</h3><ul><li>Initial Budget: $100</li><li>Empty Inventory</li><li>Daily Sales Goal to Meet</li></ul><h3>🛒 Supply Management</h3><ul><li>Coffee Beans, Milk, Sugar, Cups</li><li>Monitor stock levels</li><li>Purchase supplies as needed</li></ul><h3>💰 Customer Orders</h3><ul><li>Different drink types</li><li>Varying payment amounts</li><li>Serve based on available supplies</li></ul><h3>📊 Financial Tracking</h3><ul><li><strong>Income:</strong> Customer payments</li><li><strong>Expenses:</strong> Supply purchases</li><li><strong>Profit:</strong> Income - Expenses</li></ul><h3>🎓 Learning Moments</h3><ul><li>'Budget Detective Moments' when mistakes happen</li><li>Real-time financial decision making</li></ul></div>"
-                      }
-                    },
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Coffee Shop Budget Master is a fun game where you learn budgeting by running your own coffee shop! You start with $100 and need to buy supplies like coffee beans, milk, sugar, and cups to serve customers. Read the rules on the whiteboard and then start the game."
-                      }
-                    },
-                    {
-                      "command_type": "GAME",
-                      "payload": {
-                        "game_id": "coffee-shop-financial-literacy"
-                      }
+      {
+        "title": "Budgeting and Money Management",
+        "description": "Learn how to create and manage budgets, and understand the difference between saving and investing",
+        "modules": [
+          {
+            "title": "Budgeting with the 50/30/20 Rule",
+            "description": "Master the fundamentals of budgeting using the popular 50/30/20 framework",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Our first topic is one of the most powerful tools you can have: a budget. A budget is simply a plan for how you're going to spend your money."
                     }
-                  ]
-                },
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Seems like you've tried out the game. So... how was it ?"
-                      }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<h2>The 50/30/20 Budget Rule</h2><ul><li><b>50%</b> on Needs (rent, groceries, utilities)</li><li><b>30%</b> on Wants (dining out, hobbies, entertainment)</li><li><b>20%</b> on Savings & Debt Repayment</li></ul>"
                     }
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Two-Player Financial Debate",
-              "description": "Debate a challenging financial decision with a classmate",
-              "phases": [
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TWO_PLAYER_GAME",
-                      "payload": {
-                        "game_type": "THIS_OR_THAT",
-                        "topic": "Birthday Money Decision",
-                        "sides": ["Spend your $50 birthday money on a cool new video game today", "Save your $50 birthday money for 6 months to buy a $100 bike"]
-                      }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "A great starting point is the 50/30/20 rule. You divide your after-tax income into these three categories. It helps ensure you're saving while still having fun."
                     }
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Introduction to Financial Literacy",
-              "description": "Welcome to the course and understanding what financial literacy means",
-              "phases": [
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Hello everyone, and welcome to Financial Literacy 101! Today, we're going to start a journey to understand money better. It might sound complicated, but I promise we'll make it simple and fun."
-                      }
-                    },
-                    {
-                      "command_type": "WHITEBOARD",
-                      "payload": {
-                        "html": "<h1>What is Financial Literacy?</h1><p>It's the ability to understand and effectively use various financial skills, including personal financial management, budgeting, and investing.</p>"
-                      }
-                    },
-                    {
-                      "command_type": "CLASSMATE_SPEECH",
-                      "payload": {
-                        "text": "So... it's like learning the secret level-up codes for money? Awesome!"
-                      }
-                    },
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Haha, exactly! Think of it as getting the strategy guide for your financial life. Let's get started when you're ready."
-                      }
-                    },
-                    {
-                      "command_type": "BINARY_CHOICE_QUESTION",
-                      "payload": {
-                        "question": "Saving money for that latest PS5 by collecting leftover pennies is.. ",
-                        "left": "fumble",
-                        "right": "4D chess",
-                        "correct": "right"
-                      }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, so my video game collection falls under 'Wants', right? Not 'Needs'? Bummer."
                     }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Budgeting and Money Management",
-          "description": "Learn how to create and manage budgets, and understand the difference between saving and investing",
-          "modules": [
-            {
-              "title": "Budgeting with the 50/30/20 Rule",
-              "description": "Master the fundamentals of budgeting using the popular 50/30/20 framework",
-              "phases": [
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Our first topic is one of the most powerful tools you can have: a budget. A budget is simply a plan for how you're going to spend your money."
-                      }
-                    },
-                    {
-                      "command_type": "WHITEBOARD",
-                      "payload": {
-                        "html": "<h2>The 50/30/20 Budget Rule</h2><ul><li><b>50%</b> on Needs (rent, groceries, utilities)</li><li><b>30%</b> on Wants (dining out, hobbies, entertainment)</li><li><b>20%</b> on Savings & Debt Repayment</li></ul>"
-                      }
-                    },
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "A great starting point is the 50/30/20 rule. You divide your after-tax income into these three categories. It helps ensure you're saving while still having fun."
-                      }
-                    },
-                    {
-                      "command_type": "CLASSMATE_SPEECH",
-                      "payload": {
-                        "text": "Wait, so my video game collection falls under 'Wants', right? Not 'Needs'? Bummer."
-                      }
-                    },
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "That's right! It's all about making conscious choices. Now, let's see if you've got the hang of it."
-                      }
-                    },
-                    {
-                      "command_type": "MCQ_QUESTION",
-                      "payload": {
-                        "question": "According to the 50/30/20 rule, what percentage of your income should go towards 'Needs'?",
-                        "options": [
-                          {
-                            "text": "20%",
-                            "correct": false
-                          },
-                          {
-                            "text": "30%",
-                            "correct": false
-                          },
-                          {
-                            "text": "50%",
-                            "correct": true
-                          },
-                          {
-                            "text": "100%",
-                            "correct": false
-                          }
-                        ]
-                      }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "That's right! It's all about making conscious choices. Now, let's see if you've got the hang of it."
                     }
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Saving vs. Investing",
-              "description": "Understand the key differences between saving and investing your money",
-              "phases": [
-                {
-                  "type": "instruction",
-                  "instruction": "Create a slide that introduces the difference between saving and investing. Start by defining 'saving' as setting aside money for short-term goals or emergencies. Use the WHITEBOARD to show examples like an 'Emergency Fund' or 'Vacation Fund'. Then, define 'investing' as using money to potentially grow wealth over the long term, mentioning it involves risk. Use TEACHER_SPEECH to explain the content. Use the CLASSMATE_SPEECH to ask 'So investing is like planting a money tree?'. End the slide with a WAIT_FOR_STUDENT command. For each command's content, personalise it according to the user's favourite hobbies, interests and analogies. These have been provided in the system message beforehand."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Debt Management",
-          "description": "Learn to distinguish between good and bad debt and develop strategies for managing debt effectively",
-          "modules": [
-            {
-              "title": "Understanding Good Debt vs. Bad Debt",
-              "description": "Learn the critical difference between debt that helps build wealth and debt that hinders financial progress",
-              "phases": [
-                {
-                  "type": "content",
-                  "content": [
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Let's talk about debt. Not all debt is created equal. It's important to understand the difference between 'good debt' and 'bad debt'."
-                      }
-                    },
-                    {
-                      "command_type": "WHITEBOARD",
-                      "payload": {
-                        "html": "<h2>Good Debt vs. Bad Debt</h2><div style='display: flex; justify-content: space-around;'><div style='border: 1px solid green; padding: 10px; border-radius: 8px;'><h4>Good Debt 👍</h4><p>Investments that can grow in value or increase your income.</p><ul><li>Student Loans</li><li>Mortgage</li><li>Business Loan</li></ul></div><div style='border: 1px solid red; padding: 10px; border-radius: 8px;'><h4>Bad Debt 👎</h4><p>Money borrowed for things that depreciate in value.</p><ul><li>Credit Card Debt</li><li>Car Loans (most)</li><li>Payday Loans</li></ul></div></div>"
-                      }
-                    },
-                    {
-                      "command_type": "TEACHER_SPEECH",
-                      "payload": {
-                        "text": "Good debt helps you build wealth, like a loan for education or a house. Bad debt is typically for consumer goods and often comes with high interest rates, which can trap you."
-                      }
-                    },
-                    {
-                      "command_type": "MCQ_QUESTION",
-                      "payload": {
-                        "question": "Which of the following is generally considered 'good debt'?",
-                        "options": [
-                          {
-                            "text": "A high-interest credit card balance",
-                            "correct": false
-                          },
-                          {
-                            "text": "A loan for a new TV",
-                            "correct": false
-                          },
-                          {
-                            "text": "A student loan for a college degree",
-                            "correct": true
-                          },
-                          {
-                            "text": "A payday loan",
-                            "correct": false
-                          }
-                        ]
-                      }
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "According to the 50/30/20 rule, what percentage of your income should go towards 'Needs'?",
+                      "options": [
+                        {
+                          "text": "20%",
+                          "correct": false
+                        },
+                        {
+                          "text": "30%",
+                          "correct": false
+                        },
+                        {
+                          "text": "50%",
+                          "correct": true
+                        },
+                        {
+                          "text": "100%",
+                          "correct": false
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Course Summary and Next Steps",
-          "description": "Review key concepts and plan your financial future",
-          "modules": [
-            {
-              "title": "Course Summary and Key Takeaways",
-              "description": "Consolidate learning and prepare for applying financial literacy skills",
-              "phases": [
-                {
-                  "type": "instruction",
-                  "instruction": "This is the final slide. Summarize the key topics covered: Budgeting (50/30/20 rule), Saving vs. Investing, and Good vs. Bad Debt. The teacher should give an encouraging final message about taking control of one's financial future. Use the WHITEBOARD to list the key takeaways. No questions are needed. End with a final WAIT_FOR_STUDENT."
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-} 
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Saving vs. Investing",
+            "description": "Understand the key differences between saving and investing your money",
+            "phases": [
+              {
+                "type": "instruction",
+                "instruction": "Create a slide that introduces the difference between saving and investing. Start by defining 'saving' as setting aside money for short-term goals or emergencies. Use the WHITEBOARD to show examples like an 'Emergency Fund' or 'Vacation Fund'. Then, define 'investing' as using money to potentially grow wealth over the long term, mentioning it involves risk. Use TEACHER_SPEECH to explain the content. Use the CLASSMATE_SPEECH to ask 'So investing is like planting a money tree?'. End the slide with a WAIT_FOR_STUDENT command. For each command's content, personalise it according to the user's favourite hobbies, interests and analogies. These have been provided in the system message beforehand."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Debt Management",
+        "description": "Learn to distinguish between good and bad debt and develop strategies for managing debt effectively",
+        "modules": [
+          {
+            "title": "Understanding Good Debt vs. Bad Debt",
+            "description": "Learn the critical difference between debt that helps build wealth and debt that hinders financial progress",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Let's talk about debt. Not all debt is created equal. It's important to understand the difference between 'good debt' and 'bad debt'."
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<h2>Good Debt vs. Bad Debt</h2><div style='display: flex; justify-content: space-around;'><div style='border: 1px solid green; padding: 10px; border-radius: 8px;'><h4>Good Debt 👍</h4><p>Investments that can grow in value or increase your income.</p><ul><li>Student Loans</li><li>Mortgage</li><li>Business Loan</li></ul></div><div style='border: 1px solid red; padding: 10px; border-radius: 8px;'><h4>Bad Debt 👎</h4><p>Money borrowed for things that depreciate in value.</p><ul><li>Credit Card Debt</li><li>Car Loans (most)</li><li>Payday Loans</li></ul></div></div>"
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Good debt helps you build wealth, like a loan for education or a house. Bad debt is typically for consumer goods and often comes with high interest rates, which can trap you."
+                    }
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "Which of the following is generally considered 'good debt'?",
+                      "options": [
+                        {
+                          "text": "A high-interest credit card balance",
+                          "correct": false
+                        },
+                        {
+                          "text": "A loan for a new TV",
+                          "correct": false
+                        },
+                        {
+                          "text": "A student loan for a college degree",
+                          "correct": true
+                        },
+                        {
+                          "text": "A payday loan",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Course Summary and Next Steps",
+        "description": "Review key concepts and plan your financial future",
+        "modules": [
+          {
+            "title": "Course Summary and Key Takeaways",
+            "description": "Consolidate learning and prepare for applying financial literacy skills",
+            "phases": [
+              {
+                "type": "instruction",
+                "instruction": "This is the final slide. Summarize the key topics covered: Budgeting (50/30/20 rule), Saving vs. Investing, and Good vs. Bad Debt. The teacher should give an encouraging final message about taking control of one's financial future. Use the WHITEBOARD to list the key takeaways. No questions are needed. End with a final WAIT_FOR_STUDENT."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "financial-literacy-fundamentals-for-kids": {
+    "id": "financial-literacy-fundamentals-for-kids",
+    "title": "Financial Literacy Fundamentals for Kids",
+    "description": "An engaging introduction to money management skills that helps 5th graders understand budgeting, income, expenses, and saving through interactive learning and real-world applications.",
+    "category": "Personal Finance & Life Skills",
+    "estimatedDuration": "45-60 minutes",
+    "stats": {
+      "total_topics": 1,
+      "total_modules": 1,
+      "total_phases": 8
+    },
+    "topics": [
+      {
+        "title": "Introduction to Budgeting for Kids",
+        "description": "Students will learn what budgets are, how to create basic budgets, distinguish between income and expenses, and understand the importance of saving money as part of financial planning.",
+        "modules": [
+          {
+            "title": "Building Your First Budget",
+            "description": "Students discover budgeting fundamentals through interactive activities, create their own personal budget, and learn to set realistic savings goals while applying math skills to real money problems.",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Hey there! Imagine if I told you there's a secret superpower that can help you get that new video game, save for a bike, AND still have money for snacks. Would you want to learn it?"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, seriously? Is this like some sort of money cheat code? Because my dad literally said I 'have no concept of money' last week..."
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Sam, you're about to discover something that's going to change how you think about money forever. It's called budgeting, and it's like having a GPS for your money!"
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style='font-family: Inter, Segoe UI, system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;'><h2 style='font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;'>🦸‍♂️ Your Money Superpower: BUDGETING</h2><div style='background: #f7fafc; border-radius: 12px; padding: 25px; margin: 20px 0; border: 1px solid #bee3f8; text-align: center;'><h3 style='font-size: 22px; font-weight: 600; margin: 0 0 15px 0; color: #2d3748;'>What is a Budget? 🤔</h3><p style='font-size: 18px; margin: 0; color: #4a5568; line-height: 1.6;'>A <strong>budget</strong> is like a plan or map that shows you:</p><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;'><div style='background: #f0fff4; border-radius: 8px; padding: 15px; border: 1px solid #c6f6d5;'><div style='font-size: 24px; margin-bottom: 8px;'>💰</div><p style='font-size: 16px; font-weight: 600; margin: 0; color: #276749;'>Money Coming IN</p></div><div style='background: #fef5e7; border-radius: 8px; padding: 15px; border: 1px solid #fbd38d;'><div style='font-size: 24px; margin-bottom: 8px;'>🛒</div><p style='font-size: 16px; font-weight: 600; margin: 0; color: #c05621;'>Money Going OUT</p></div></div></div></div>"
+                    }
+                  },
+                  {
+                    "command_type": "BINARY_CHOICE_QUESTION",
+                    "payload": {
+                      "question": "A budget is like...",
+                      "left": "A treasure map for your money",
+                      "right": "A way to make money disappear",
+                      "correct": "left"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ]
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Now let's become money detectives! Every dollar has a story - it either comes into your life or leaves your life. Let's investigate these money mysteries!"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Ooh, this is giving detective vibes! Are we about to solve the case of the missing allowance money?"
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style='font-family: Inter, Segoe UI, system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;'><h2 style='font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;'>🕵️ Money Detective: INCOME vs EXPENSES</h2><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 25px 0;'><div style='background: #f0fff4; border-radius: 12px; padding: 25px; border: 2px solid #c6f6d5;'><h3 style='font-size: 20px; font-weight: 600; text-align: center; margin: 0 0 15px 0; color: #276749;'>💰 INCOME</h3><p style='font-size: 16px; text-align: center; margin: 0 0 15px 0; color: #4a5568;'>Money Coming IN</p><div style='background: white; border-radius: 8px; padding: 15px; margin: 10px 0;'><p style='margin: 5px 0; font-size: 14px;'>🏠 Allowance</p><p style='margin: 5px 0; font-size: 14px;'>🎂 Birthday money</p><p style='margin: 5px 0; font-size: 14px;'>🧹 Chore payments</p><p style='margin: 5px 0; font-size: 14px;'>🐕 Dog walking</p><p style='margin: 5px 0; font-size: 14px;'>🍋 Lemonade stand</p></div></div><div style='background: #fef5e7; border-radius: 12px; padding: 25px; border: 2px solid #fbd38d;'><h3 style='font-size: 20px; font-weight: 600; text-align: center; margin: 0 0 15px 0; color: #c05621;'>🛒 EXPENSES</h3><p style='font-size: 16px; text-align: center; margin: 0 0 15px 0; color: #4a5568;'>Money Going OUT</p><div style='background: white; border-radius: 8px; padding: 15px; margin: 10px 0;'><p style='margin: 5px 0; font-size: 14px;'>🎮 Video games</p><p style='margin: 5px 0; font-size: 14px;'>🍕 Snacks & food</p><p style='margin: 5px 0; font-size: 14px;'>🎬 Movies</p><p style='margin: 5px 0; font-size: 14px;'>👕 Clothes</p><p style='margin: 5px 0; font-size: 14px;'>🎁 Gifts for friends</p></div></div></div></div>"
+                    }
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "Your weekly allowance of $10 would be considered:",
+                      "options": [
+                        {
+                          "text": "An expense",
+                          "correct": false
+                        },
+                        {
+                          "text": "Income",
+                          "correct": true
+                        },
+                        {
+                          "text": "A budget",
+                          "correct": false
+                        },
+                        {
+                          "text": "Savings",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Perfect! Now here's where it gets interesting. The goal is to make sure your INCOME is bigger than or equal to your EXPENSES. When that happens, we call it a 'balanced budget' - and that's when the magic happens!"
+                    }
+                  },
+                  {
+                    "command_type": "BINARY_CHOICE_QUESTION",
+                    "payload": {
+                      "question": "Buying a new Minecraft skin with your birthday money is...",
+                      "left": "Income",
+                      "right": "Expense",
+                      "correct": "right"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ]
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Time for some budget math magic! Don't worry - this isn't scary math. This is 'can I afford this awesome thing' math, which is way more fun!"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, so math can actually help me figure out if I can buy that new battle pass? No cap, that's actually useful!"
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style='font-family: Inter, Segoe UI, system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;'><h2 style='font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;'>🪄 Budget Math Magic Formula</h2><div style='background: #f7fafc; border-radius: 12px; padding: 25px; margin: 20px 0; border: 1px solid #bee3f8; text-align: center;'><h3 style='font-size: 24px; font-weight: 600; margin: 0 0 20px 0; color: #2d3748;'>The Golden Rule ✨</h3><p style='font-size: 20px; margin: 0; color: #4a5568; background: white; padding: 15px; border-radius: 8px; border: 2px dashed #bee3f8;'><strong>INCOME - EXPENSES = Money Left Over</strong></p></div><div style='background: #edf2f7; border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #cbd5e0;'><h3 style='font-size: 18px; font-weight: 600; margin: 0 0 15px 0; color: #4a5568;'>📊 Sam's Example Budget</h3><div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px;'><div><h4 style='font-size: 16px; margin: 0 0 10px 0; color: #276749;'>💰 INCOME</h4><p style='margin: 5px 0; font-size: 14px;'>Allowance: $20</p><p style='margin: 5px 0; font-size: 14px;'>Dog walking: $15</p><p style='margin: 5px 0; font-size: 14px; font-weight: 600; background: #f0fff4; padding: 5px; border-radius: 4px;'>Total: $35</p></div><div><h4 style='font-size: 16px; margin: 0 0 10px 0; color: #c05621;'>🛒 EXPENSES</h4><p style='margin: 5px 0; font-size: 14px;'>Snacks: $8</p><p style='margin: 5px 0; font-size: 14px;'>Movies: $12</p><p style='margin: 5px 0; font-size: 14px;'>Gaming: $10</p><p style='margin: 5px 0; font-size: 14px; font-weight: 600; background: #fef5e7; padding: 5px; border-radius: 4px;'>Total: $30</p></div></div><div style='background: white; border-radius: 8px; padding: 15px; margin: 15px 0; text-align: center;'><p style='font-size: 16px; font-weight: 600; margin: 0; color: #2d3748;'>$35 - $30 = $5 left over! 🎉</p></div></div></div>"
+                    }
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "If you have $25 income and $30 expenses, your budget is:",
+                      "options": [
+                        {
+                          "text": "Balanced",
+                          "correct": false
+                        },
+                        {
+                          "text": "Perfect",
+                          "correct": false
+                        },
+                        {
+                          "text": "Over budget (need more income or less expenses)",
+                          "correct": true
+                        },
+                        {
+                          "text": "Ready for savings",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Exactly! When expenses are bigger than income, we need to either find more income or spend less. It's like a math puzzle where both sides need to balance!"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Ohhh, so that's why my mom always says 'money doesn't grow on trees' when I want everything at the store. I get it now!"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ]
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Time to put your skills to the test! You're about to run a virtual coffee shop and manage its budget. Remember - keep income higher than expenses, and you'll be successful!"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "A coffee shop? That's sick! I'm gonna make mine the most epic coffee spot ever. Think I can add gaming stations?"
+                    }
+                  },
+                  {
+                    "command_type": "GAME",
+                    "payload": {
+                      "game_id": "coffee-shop-financial-literacy"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "How did that feel? Did you notice how you had to make choices about what to spend money on? That's exactly what budgeting is like in real life!"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Bro, that was harder than I thought! I kept wanting to buy everything cool, but then I'd run out of money. Good thing it was just a game!"
+                    }
+                  },
+                  {
+                    "command_type": "BINARY_CHOICE_QUESTION",
+                    "payload": {
+                      "question": "The hardest part about managing the coffee shop budget was...",
+                      "left": "Choosing what NOT to buy",
+                      "right": "Adding up the numbers",
+                      "correct": "left"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ]
+              },
+              {
+                "type": "instruction",
+                "instruction": "Help the student create their real personal budget using their actual income sources and expenses. Start with TEACHER_SPEECH asking them to think about their current money sources (allowance, chores, gifts, etc.). Use WHITEBOARD to create their personalized budget template as they share information, making it visual and engaging with their specific amounts. Have CLASSMATE_SPEECH relate by sharing similar experiences and asking questions like 'Wait, you get paid for that? That's genius!' Create an MCQ_QUESTION about whether their budget balances based on their real numbers. Adapt all examples to match their interests and situation from their profile. End with WAIT_FOR_STUDENT."
+              },
+              {
+                "type": "instruction",
+                "instruction": "Guide the student through balancing their personal budget if it's not already balanced. Use TEACHER_SPEECH to explain strategies: finding new income sources or reducing expenses. Show on WHITEBOARD different scenarios and solutions specific to their situation. Have CLASSMATE_SPEECH share relatable struggles like 'Yeah, I had to give up buying lunch every day to save for my new skateboard.' Include interactive elements where the student makes decisions about their budget priorities. Create a BINARY_CHOICE_QUESTION about a tough budget decision they might face. Focus on practical solutions that work for kids their age. End with WAIT_FOR_STUDENT."
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Now for the best part - turning your balanced budget into a savings superpower! When you have money left over, you can save for bigger, cooler things!"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, so instead of just buying random stuff, I could save up for that sick gaming setup I've been wanting? Mind = blown!"
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style='font-family: Inter, Segoe UI, system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;'><h2 style='font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;'>🎯 Savings Goals: Your Money Journey</h2><div style='background: #f0fff4; border-radius: 12px; padding: 25px; margin: 20px 0; border: 2px solid #c6f6d5;'><h3 style='font-size: 20px; font-weight: 600; text-align: center; margin: 0 0 15px 0; color: #276749;'>💡 The Pay Yourself First Rule</h3><p style='font-size: 16px; text-align: center; margin: 0; color: #4a5568;'>Before spending on anything else, put some money aside for your goals!</p></div><div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 25px 0;'><div style='background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;'><div style='font-size: 20px; margin-bottom: 5px;'>🎯</div><p style='font-size: 12px; margin: 0; font-weight: 600;'>20%</p></div><div style='background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;'><div style='font-size: 20px; margin-bottom: 5px;'>🎯</div><p style='font-size: 12px; margin: 0; font-weight: 600;'>40%</p></div><div style='background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;'><div style='font-size: 20px; margin-bottom: 5px;'>🎯</div><p style='font-size: 12px; margin: 0; font-weight: 600;'>60%</p></div><div style='background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;'><div style='font-size: 20px; margin-bottom: 5px;'>🎯</div><p style='font-size: 12px; margin: 0; font-weight: 600;'>80%</p></div><div style='background: #f0fff4; border-radius: 8px; padding: 15px; text-align: center; border: 2px solid #c6f6d5;'><div style='font-size: 20px; margin-bottom: 5px;'>🏆</div><p style='font-size: 12px; margin: 0; font-weight: 600;'>100%</p></div></div><div style='background: white; border-radius: 8px; padding: 20px; margin: 15px 0; text-align: center; border: 1px solid #e2e8f0;'><h4 style='font-size: 16px; margin: 0 0 10px 0; color: #4a5568;'>Example: Saving for a $100 Bike</h4><p style='font-size: 14px; margin: 5px 0;'>20% milestone: $20 saved ✅</p><p style='font-size: 14px; margin: 5px 0;'>40% milestone: $40 saved ✅</p><p style='font-size: 14px; margin: 5px 0;'>If you save $10/month → Goal reached in 10 months!</p></div></div>"
+                    }
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "Breaking a big savings goal into smaller milestones helps because:",
+                      "options": [
+                        {
+                          "text": "It makes math easier",
+                          "correct": false
+                        },
+                        {
+                          "text": "It keeps you motivated along the way",
+                          "correct": true
+                        },
+                        {
+                          "text": "It's required by law",
+                          "correct": false
+                        },
+                        {
+                          "text": "It costs less money",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "TWO_PLAYER_GAME",
+                    "payload": {
+                      "game_type": "THIS_OR_THAT",
+                      "topic": "Your Big Savings Decision",
+                      "sides": [
+                        "Save $5 from every $20 allowance for 6 months to buy a $60 game",
+                        "Spend your $20 allowance each week on smaller fun things"
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ]
+              },
+              {
+                "type": "instruction",
+                "instruction": "Help the student apply everything they've learned to create an action plan for their real budget. Use TEACHER_SPEECH to review the key concepts: income, expenses, balanced budgets, and savings goals. Have them set one specific savings goal using WHITEBOARD to show their personal timeline and milestones. Include CLASSMATE_SPEECH reflecting on the whole journey with excitement like 'I can't wait to show my parents I actually know how to handle money now!' Create a final MCQ_QUESTION that tests their understanding of the complete budget process. End by having them commit to one specific action they'll take this week with their money. Use WAIT_FOR_STUDENT for final reflection."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
