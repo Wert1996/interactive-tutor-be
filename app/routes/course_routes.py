@@ -85,3 +85,16 @@ async def list_courses():
         course_projections.append(course_projection)
     return course_projections
     
+
+@router.put("/{course_id}", response_model=Course)
+async def update_course(course_id: str, course: Course):
+    """
+    Update a course by its ID.
+    
+    Args:
+        course_id: The ID of the course to update
+        course: The updated course object
+    """
+    db = Db.get_instance()
+    db.update_course(course_id, course.model_dump())
+    return course
