@@ -1,6 +1,8 @@
 
 import json
 import os
+from datetime import date, datetime
+from enum import Enum
 from typing import Any, Dict, List, Union
 
 from app.models.character import Character
@@ -25,7 +27,17 @@ def save_json_data(file_path: str, data: Dict[str, Any]) -> None:
     """Save data to a JSON file."""
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, 'w') as file:
-        json.dump(data, file, indent=2)
+        # Ensure complex types like datetime and Enum are converted to JSON-serialisable
+        # representations before writing to disk.
+        def _json_default(obj):
+            if isinstance(obj, (datetime, date)):
+                return obj.isoformat()
+            if isinstance(obj, Enum):
+                return obj.value
+            # Fallback to string representation for any other non-serialisable types
+            return str(obj)
+
+        json.dump(data, file, indent=2, default=_json_default)
 
 class Db:
     _instance = None
