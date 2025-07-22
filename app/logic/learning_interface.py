@@ -302,11 +302,13 @@ class LearningInterface:
         for command in commands:
             try:
                 if command.command_type == CommandType.TEACHER_SPEECH:
-                    audio_bytes = await generate_speech(command.payload.text, "VD1if7jDVYtAKs4P0FIY")
+                    voice_id = session.teacher.voice_id
+                    audio_bytes = await generate_speech(command.payload.text, voice_id)
                     # Encode audio bytes to base64 string
                     command.payload.audio_bytes = base64.b64encode(audio_bytes).decode('utf-8')
                 elif command.command_type == CommandType.CLASSMATE_SPEECH:
-                    audio_bytes = await generate_speech(command.payload.text, "f2yUVfK5jdm78zlpcZ8C")
+                    voice_id = session.classmate.voice_id
+                    audio_bytes = await generate_speech(command.payload.text, voice_id)
                     # Encode audio bytes to base64 string
                     command.payload.audio_bytes = base64.b64encode(audio_bytes).decode('utf-8')
                 elif command.command_type == CommandType.GAME:
