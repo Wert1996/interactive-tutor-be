@@ -17,7 +17,6 @@ class ElevenLabsResource:
     def client(self):
         return self._eleven
     
-    @cache
     async def generate_speech(self, text: str, voice_id: str):
         return self._eleven.text_to_speech.convert(
             text=text,
@@ -25,12 +24,26 @@ class ElevenLabsResource:
             model_id="eleven_multilingual_v2",
             output_format="mp3_44100_128",
         )
+    
+    async def generate_speech_stream(self, text: str, voice_id: str):
+        return self._eleven.text_to_speech.stream(
+            text=text,
+            voice_id=voice_id,
+            model_id="eleven_multilingual_v2",
+            output_format="mp3_44100_128"
+        )
 
 elevenlabs_resource = ElevenLabsResource()
 
+@cache
 async def generate_speech(text: str, voice_id: str):
     async_iterator = await elevenlabs_resource.generate_speech(text, voice_id)
     audio_bytes = b""
     async for chunk in async_iterator:
         audio_bytes += chunk
     return audio_bytes
+
+
+@cache
+async def create_speech_stream(text: str, voice_id: str):
+    return elevenlabs_resource.generate_speech_stream(text, voice_id)

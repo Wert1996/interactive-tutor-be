@@ -7,6 +7,7 @@ from datetime import datetime
 from fastapi import WebSocket
 
 from app.dao.db import Db
+from app.logic.command_parser import CommandParser
 from app.logic.dashboard import DashboardBuilder
 from app.models.character import Character
 from app.models.course import (
@@ -14,8 +15,9 @@ from app.models.course import (
     TeacherSpeechPayload, ClassmateSpeechPayload, TwoPlayerGamePayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
 )
 from app.models.session import Event, Session, SessionStatus
-from app.resources.elevenlabs import generate_speech
-from app.resources.openai import create_response, transcribe_audio
+from app.resources.elevenlabs import create_speech_stream, generate_speech
+from app.resources.openai import create_response
+from app.resources.deepgram import transcribe_audio
 from app.utils import prompts
 
 logger = logging.getLogger(__name__)
@@ -228,96 +230,65 @@ class LearningInterface:
         # Build dashboard upon session completion
         await dashboard_builder.build_dashboard()
 
-    async def parse_response(self, response):
-        # This implementation is for the normal request-response flow. Streaming will be handled later.
-        response_content = response.output_text
-        # Parse commands in sequence: <TEACHER_SPEECH> <CLASSMATE_SPEECH> <WHITEBOARD> <DIAGRAM> <MCQ_QUESTION> <FINISH_MODULE>
-        commands = []
-        while response_content:
-            if response_content.startswith("<FINISH_MODULE/>"):
-                commands.append(Command(command_type=CommandType.FINISH_MODULE, payload=AckPayload()))
-                response_content = response_content[len("<FINISH_MODULE/>"):]
-            elif response_content.startswith("<ACKNOWLEDGE/>"):
-                commands.append(Command(command_type=CommandType.ACKNOWLEDGE, payload=AckPayload()))
-                response_content = response_content[len("<ACKNOWLEDGE/>"):]
-            elif response_content.startswith("<WAIT_FOR_STUDENT/>"):
-                commands.append(Command(command_type=CommandType.WAIT_FOR_STUDENT, payload=WaitForStudentPayload()))
-                response_content = response_content[len("<WAIT_FOR_STUDENT/>"):]
-            elif response_content.startswith("<GAME>"):
-                game_end = response_content.find("</GAME>")
-                game_id = response_content[len("<GAME>"):game_end]
-                game_payload = GamePayload(game_id=game_id, code="")  # code will be filled in execute_commands
-                commands.append(Command(command_type=CommandType.GAME, payload=game_payload))
-                response_content = response_content[game_end + len("</GAME>"):]
-            elif response_content.startswith("<MCQ_QUESTION>"):
-                mcq_question_start = response_content.find("</MCQ_QUESTION>")
-                mcq_question_content = response_content[len("<MCQ_QUESTION>"):mcq_question_start]
-                mcq_question_json = json.loads(mcq_question_content)
-                mcq_question = MultipleChoiceQuestionPayload(**mcq_question_json)
-                commands.append(Command(command_type=CommandType.MCQ_QUESTION, payload=mcq_question))
-                response_content = response_content[mcq_question_start + len("</MCQ_QUESTION>"):]
-            elif response_content.startswith("<TEACHER_SPEECH>"):
-                teacher_speech_start = response_content.find("</TEACHER_SPEECH>")
-                teacher_speech_content = response_content[len("<TEACHER_SPEECH>"):teacher_speech_start]
-                teacher_speech_payload = TeacherSpeechPayload(text=teacher_speech_content)
-                commands.append(Command(command_type=CommandType.TEACHER_SPEECH, payload=teacher_speech_payload))
-                response_content = response_content[teacher_speech_start + len("</TEACHER_SPEECH>"):]
-            elif response_content.startswith("<CLASSMATE_SPEECH>"):
-                classmate_speech_start = response_content.find("</CLASSMATE_SPEECH>")
-                classmate_speech_content = response_content[len("<CLASSMATE_SPEECH>"):classmate_speech_start]
-                classmate_speech_payload = ClassmateSpeechPayload(text=classmate_speech_content)
-                commands.append(Command(command_type=CommandType.CLASSMATE_SPEECH, payload=classmate_speech_payload))
-                response_content = response_content[classmate_speech_start + len("</CLASSMATE_SPEECH>"):]
-            elif response_content.startswith("<WHITEBOARD>"):
-                whiteboard_start = response_content.find("</WHITEBOARD>")
-                whiteboard_content = response_content[len("<WHITEBOARD>"):whiteboard_start]
-                whiteboard_payload = WhiteboardPayload(html=whiteboard_content)
-                commands.append(Command(command_type=CommandType.WHITEBOARD, payload=whiteboard_payload))
-                response_content = response_content[whiteboard_start + len("</WHITEBOARD>"):]
-            elif response_content.startswith("<BINARY_CHOICE_QUESTION>"):
-                binary_choice_question_start = response_content.find("</BINARY_CHOICE_QUESTION>")
-                binary_choice_question_content = response_content[len("<BINARY_CHOICE_QUESTION>"):binary_choice_question_start]
-                binary_choice_question_json = json.loads(binary_choice_question_content)
-                binary_choice_question = BinaryChoiceQuestionPayload(**binary_choice_question_json)
-                commands.append(Command(command_type=CommandType.BINARY_CHOICE_QUESTION, payload=binary_choice_question))
-                response_content = response_content[binary_choice_question_start + len("</BINARY_CHOICE_QUESTION>"):]
-            elif response_content.startswith("<STUDENT_POINT>"):
-                student_point_start = response_content.find("</STUDENT_POINT>")
-                student_point_content = response_content[len("<STUDENT_POINT>"):student_point_start]
-                student_point_payload = StudentPointPayload(point=student_point_content)
-                commands.append(Command(command_type=CommandType.STUDENT_POINT, payload=student_point_payload))
-                response_content = response_content[student_point_start + len("</STUDENT_POINT>"):]
-            elif response_content.startswith("<CLASSMATE_POINT>"):
-                classmate_point_start = response_content.find("</CLASSMATE_POINT>")
-                classmate_point_content = response_content[len("<CLASSMATE_POINT>"):classmate_point_start]
-                classmate_point_payload = ClassmatePointPayload(point=classmate_point_content)
-                commands.append(Command(command_type=CommandType.CLASSMATE_POINT, payload=classmate_point_payload))
-                response_content = response_content[classmate_point_start + len("</CLASSMATE_POINT>"):]
-            else:
-                # Skip unknown content
-                response_content = response_content[1:]
-        return commands
-    
+    async def create_response_and_execute(self, create_response_args: dict, session):
+        """
+        openai text delta:
+        {
+            "type": "response.output_text.delta",
+            "item_id": "msg_123",
+            "output_index": 0,
+            "content_index": 0,
+            "delta": "In",
+            "sequence_number": 1
+        }
+        """
+        # response = await create_response(message=phase_update_prompt, instructions=session.system_instructions, previous_response_id=session.previous_response_id)
+        create_response_args["stream"] = True
+        response_stream = await create_response(**create_response_args)
+        response_id = None
+        command_parser = CommandParser()
+        for response in response_stream:
+            if response.type == "response.created":
+                response_id = response.response.id
+            elif response.type == "response.output_text.delta":
+                command_parser.add(response.delta)
+                commands = command_parser.parse()
+                await self.execute_commands(commands, session)
+        session.previous_response_id = response_id
+        self.db.update_session_in_memory(session.id, session.model_dump())
+
+    """
+    For both types of speech commands, text and audio can be sent separately. The UI handles what to do based on the data available.
+    """
     async def execute_commands(self, commands: List[Command], session: Session):
         for command in commands:
             try:
-                if command.command_type == CommandType.TEACHER_SPEECH:
-                    voice_id = session.teacher.voice_id
-                    audio_bytes = await generate_speech(command.payload.text, voice_id)
-                    # Encode audio bytes to base64 string
-                    command.payload.audio_bytes = base64.b64encode(audio_bytes).decode('utf-8')
-                elif command.command_type == CommandType.CLASSMATE_SPEECH:
-                    voice_id = session.classmate.voice_id
-                    audio_bytes = await generate_speech(command.payload.text, voice_id)
-                    # Encode audio bytes to base64 string
-                    command.payload.audio_bytes = base64.b64encode(audio_bytes).decode('utf-8')
-                elif command.command_type == CommandType.GAME:
-                    game = self.db.get_game(command.payload.game_id)
-                    command.payload.code = game.code
-                await self.websocket.send_json({
-                    "type": "command",
-                    "command": command.model_dump()
-                })
+                if command.command_type in [CommandType.TEACHER_SPEECH, CommandType.CLASSMATE_SPEECH]:
+                    # Handle commands that need streaming
+                    await self.websocket.send_json({
+                        "type": "command",
+                        "command": command.model_dump()
+                    })
+                    self.log_event(session, "execute_command", {"command": command.model_dump()})
+                    command.payload.text = None
+                    voice_id = session.teacher.voice_id if command.command_type == CommandType.TEACHER_SPEECH else session.classmate.voice_id
+                    audio_stream = await create_speech_stream(command.payload.text, voice_id)
+                    for chunk in audio_stream:
+                        if isinstance(chunk, bytes):
+                            command.payload.audio_bytes = base64.b64encode(chunk).decode('utf-8')
+                            await self.websocket.send_json({
+                                "type": "command",
+                                "command": command.model_dump()
+                            })
+                else:
+                    # Handle commands that are flushed out at once
+                    if command.command_type == CommandType.GAME:
+                        game = self.db.get_game(command.payload.game_id)
+                        command.payload.code = game.code
+                    await self.websocket.send_json({
+                        "type": "command",
+                        "command": command.model_dump()
+                    })
                 self.log_event(session, "execute_command", {"command": command.model_dump()})
             except Exception as e:
                 logger.error(f"Error executing command {command.command_type}: {str(e)}")
