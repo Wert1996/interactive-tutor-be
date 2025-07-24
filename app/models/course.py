@@ -26,11 +26,13 @@ class PhaseType(str, Enum):
 class TeacherSpeechPayload(BaseModel):
     text: str
     audio_bytes: Optional[str] = None  # Base64 encoded audio data
+    stream_complete: Optional[bool] = None  # Indicates if audio streaming is complete
 
 
 class ClassmateSpeechPayload(BaseModel):
     text: str
     audio_bytes: Optional[str] = None  # Base64 encoded audio data
+    stream_complete: Optional[bool] = None  # Indicates if audio streaming is complete
 
 
 class WhiteboardPayload(BaseModel):

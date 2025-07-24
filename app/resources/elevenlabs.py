@@ -1,4 +1,3 @@
-from functools import cache
 import os
 from elevenlabs.client import AsyncElevenLabs
 
@@ -35,7 +34,7 @@ class ElevenLabsResource:
 
 elevenlabs_resource = ElevenLabsResource()
 
-@cache
+
 async def generate_speech(text: str, voice_id: str):
     async_iterator = await elevenlabs_resource.generate_speech(text, voice_id)
     audio_bytes = b""
@@ -44,6 +43,5 @@ async def generate_speech(text: str, voice_id: str):
     return audio_bytes
 
 
-@cache
 async def create_speech_stream(text: str, voice_id: str):
-    return elevenlabs_resource.generate_speech_stream(text, voice_id)
+    return await elevenlabs_resource.generate_speech_stream(text, voice_id)

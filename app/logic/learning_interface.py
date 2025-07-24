@@ -15,7 +15,7 @@ from app.models.course import (
     TeacherSpeechPayload, ClassmateSpeechPayload, TwoPlayerGamePayload, WhiteboardPayload, WaitForStudentPayload, GamePayload
 )
 from app.models.session import Event, Session, SessionStatus
-from app.resources.elevenlabs import create_speech_stream, generate_speech
+from app.resources.elevenlabs import create_speech_stream
 from app.resources.openai import create_response
 from app.resources.deepgram import transcribe_audio
 from app.utils import prompts
@@ -153,16 +153,26 @@ class LearningInterface:
                 })
                 # text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
                 text = f"Student has said: {text}"
-                model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
-                session.previous_response_id = model_response.id
+                await self.create_response_and_execute(
+                    {
+                        "message": text,
+                        "instructions": session.system_instructions,
+                        "previous_response_id": session.previous_response_id
+                    },
+                    session
+                )
                 self.log_event(session, "student_interaction", {"interaction": interaction})
-                await self.execute_commands(await self.parse_response(model_response), session)
         elif interaction.get("type") in ["mcq_question", "binary_choice_question"]:
             text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Feel free to use whiteboard/teacher/classmate speech and other commands. Emit FINISH_MODULE if we can proceed."
-            model_response =  await create_response(message=text, previous_response_id=session.previous_response_id, instructions=session.system_instructions)
-            session.previous_response_id = model_response.id
+            await self.create_response_and_execute(
+                {
+                    "message": text,
+                    "instructions": session.system_instructions,
+                    "previous_response_id": session.previous_response_id
+                },
+                session
+            )
             self.log_event(session, "student_interaction", {"interaction": interaction})
-            await self.execute_commands(await self.parse_response(model_response), session)
         else:
             await self.websocket.send_json({
                 "type": "error",
@@ -176,20 +186,26 @@ class LearningInterface:
         two_player_game_payload = TwoPlayerGamePayload(**two_player_game)
         system_prompt = prompts.get_two_player_game_system_prompt(two_player_game_payload)
         session.system_instructions = system_prompt
-        response = await create_response(message="Start the game with a small, crisp announcement speech from the teacher. Then, emit the CLASSMATE_SPEECH command with the first speech from the classmate.", instructions=session.system_instructions, previous_response_id=session.previous_response_id)
-        session.previous_response_id = response.id
-        self.db.update_session_in_memory(session.id, session.model_dump())
-        content = await self.parse_response(response)
-        await self.execute_commands(content, session)
+        await self.create_response_and_execute(
+            {
+                "message": "Start the game with a small, crisp announcement speech from the teacher. Then, emit the CLASSMATE_SPEECH command with the first speech from the classmate.",
+                "instructions": session.system_instructions,
+                "previous_response_id": session.previous_response_id
+            },
+            session
+        )
 
     async def _handle_finish_two_player_game(self, message: Dict[str, Any]) -> Dict[str, Any]:
         session_id = message.get("session_id", "")
         session, _, _ = self.validate_inputs(session_id)
-        response = await create_response(message="The game timer has now ended. End the game with a small, crisp concluding speech from the teacher. Emit <FINISH_MODULE/> at the end.", instructions=session.system_instructions, previous_response_id=session.previous_response_id)
-        session.previous_response_id = response.id
-        self.db.update_session_in_memory(session.id, session.model_dump())
-        content = await self.parse_response(response)
-        await self.execute_commands(content, session)
+        await self.create_response_and_execute(
+            {
+                "message": "The game timer has now ended. End the game with a small, crisp concluding speech from the teacher. Emit <FINISH_MODULE/> at the end.",
+                "instructions": session.system_instructions,
+                "previous_response_id": session.previous_response_id
+            },
+            session
+        )
         session.system_instructions = None
 
     async def start_phase(self, session: Session, course: Course, characters: List[Character]):
@@ -211,11 +227,14 @@ class LearningInterface:
         phase_update_prompt = prompts.phase_update_prompt(content_string, phase.instruction)
         if phase.type == PhaseType.CONTENT:
             await self.execute_commands(phase.content, session)  
-        response = await create_response(message=phase_update_prompt, instructions=session.system_instructions, previous_response_id=session.previous_response_id)
-        session.previous_response_id = response.id
-        self.db.update_session_in_memory(session.id, session.model_dump())
-        content = await self.parse_response(response)
-        await self.execute_commands(content, session)
+        await self.create_response_and_execute(
+            {
+                "message": phase_update_prompt,
+                "instructions": session.system_instructions,
+                "previous_response_id": session.previous_response_id
+            },
+            session
+        )
     
     async def finish_module(self, session: Session, course: Course):
         session.status = SessionStatus.COMPLETED
@@ -247,7 +266,7 @@ class LearningInterface:
         response_stream = await create_response(**create_response_args)
         response_id = None
         command_parser = CommandParser()
-        for response in response_stream:
+        async for response in response_stream:
             if response.type == "response.created":
                 response_id = response.response.id
             elif response.type == "response.output_text.delta":
@@ -270,16 +289,42 @@ class LearningInterface:
                         "command": command.model_dump()
                     })
                     self.log_event(session, "execute_command", {"command": command.model_dump()})
-                    command.payload.text = None
                     voice_id = session.teacher.voice_id if command.command_type == CommandType.TEACHER_SPEECH else session.classmate.voice_id
                     audio_stream = await create_speech_stream(command.payload.text, voice_id)
-                    for chunk in audio_stream:
+                    command.payload.text = None
+                    
+                    # Buffer audio chunks to reduce WebSocket message frequency
+                    audio_buffer = b""
+                    chunk_size_threshold = 16384  # Send chunks when buffer reaches this size
+                    
+                    async for chunk in audio_stream:
                         if isinstance(chunk, bytes):
-                            command.payload.audio_bytes = base64.b64encode(chunk).decode('utf-8')
-                            await self.websocket.send_json({
-                                "type": "command",
-                                "command": command.model_dump()
-                            })
+                            audio_buffer += chunk
+                            
+                            # Send when buffer is large enough or this is the last chunk
+                            if len(audio_buffer) >= chunk_size_threshold:
+                                command.payload.audio_bytes = base64.b64encode(audio_buffer).decode('utf-8')
+                                await self.websocket.send_json({
+                                    "type": "command",
+                                    "command": command.model_dump()
+                                })
+                                audio_buffer = b""  # Reset buffer
+                    
+                    # Send any remaining audio data
+                    if audio_buffer:
+                        command.payload.audio_bytes = base64.b64encode(audio_buffer).decode('utf-8')
+                        await self.websocket.send_json({
+                            "type": "command",
+                            "command": command.model_dump()
+                        })
+                    
+                    # Send a final message to indicate audio stream is complete
+                    command.payload.audio_bytes = None
+                    command.payload.stream_complete = True
+                    await self.websocket.send_json({
+                        "type": "command",
+                        "command": command.model_dump()
+                    })
                 else:
                     # Handle commands that are flushed out at once
                     if command.command_type == CommandType.GAME:

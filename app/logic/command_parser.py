@@ -90,7 +90,7 @@ class CommandParser:
             commands += self.parse()
         return commands
 
-    def handle_standalone_tag(self, tag):
+    def handle_standalone_tags(self, tag):
         commands = []
         if tag == "<FINISH_MODULE/>":
             commands.append(Command(command_type=CommandType.FINISH_MODULE, payload=AckPayload()))
@@ -105,7 +105,7 @@ class CommandParser:
             if close:
                 return content
             # If not closed, send command with content until last punctuation mark
-            punctuation_marks = ['.', '!', '?']
+            punctuation_marks = ['.', '!', '?', ':']
             last_punctuation_index = -1
             for i in range(len(content) - 1, -1, -1):
                 if content[i] in punctuation_marks:
@@ -128,12 +128,20 @@ class CommandParser:
             mcq_question = MultipleChoiceQuestionPayload(**mcq_question_json)
             commands.append(Command(command_type=CommandType.MCQ_QUESTION, payload=mcq_question))
         elif self.open_command == "<TEACHER_SPEECH>":
+            if not self.open_command_content:
+                return commands
             speech_content, remaining_content = extract_speech_content(self.open_command_content)
+            if not speech_content:
+                return commands
             self.open_command_content = remaining_content
             teacher_speech_payload = TeacherSpeechPayload(text=speech_content)
             commands.append(Command(command_type=CommandType.TEACHER_SPEECH, payload=teacher_speech_payload))
         elif self.open_command == "<CLASSMATE_SPEECH>":
+            if not self.open_command_content:
+                return commands
             speech_content, remaining_content = extract_speech_content(self.open_command_content)
+            if not speech_content:
+                return commands
             self.open_command_content = remaining_content
             classmate_speech_payload = ClassmateSpeechPayload(text=speech_content)
             commands.append(Command(command_type=CommandType.CLASSMATE_SPEECH, payload=classmate_speech_payload))
