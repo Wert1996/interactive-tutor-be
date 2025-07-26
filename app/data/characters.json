@@ -14,7 +14,7 @@
   {
     "role": "teacher",
     "name": "Mr. K",
-    "image_url": "https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjg3Y2NmY2RkNjAwODE5MTgzNDM4Yjc5NTMzNTA1ZWI6ZmlsZV8wMDAwMDAwMDY5ODQ2MjJmYmVkZDY2NzllYTA3OWYzOSIsInRzIjoiNDg2OTQ3IiwicCI6InB5aSIsInNpZyI6ImUxNjNhZjIzMzZiMTI3MWIyNzgyNGY3MGZmY2JhN2VmOTg1M2UwNGIxZTBlYTNhNmEzZmZhZWYwMDkzMmNlODUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ==",
+    "image_url": "https://public-assets-bucket-wert.s3.us-east-1.amazonaws.com/mr+k.png",
     "age": 35,
     "gender": "Male",
     "voice_id": "s3TPKV1kjDlVtZbl4Ksh",
@@ -38,7 +38,7 @@
   {
     "role": "classmate",
     "name": "Amuni",
-    "image_url": "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-adf0-622f-9b5f-99b48884d4b9/raw?se=2025-07-20T12%3A28%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=0d301eb0-2c4e-5301-9cf7-1c411fdd4d56&skoid=e9d2f8b1-028a-4cff-8eb1-d0e66fbefcca&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-20T01%3A22%3A19Z&ske=2025-07-21T01%3A22%3A19Z&sks=b&skv=2024-08-04&sig=hpIlOcfoPK%2B6/nUHEgGp7YuV15JRNX9ffq1t8GICqmE%3D",
+    "image_url": "https://public-assets-bucket-wert.s3.us-east-1.amazonaws.com/amuni.png",
     "age": 15,
     "gender": "Female",
     "voice_id": "BlgEcC0TfWpBak7FmvHW",
