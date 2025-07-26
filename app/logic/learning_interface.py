@@ -273,7 +273,7 @@ class LearningInterface:
                 commands = command_parser.parse()
                 await self.execute_commands(commands, session)
             elif response.type == "response.completed":
-                print("Response completed")
+                logger.info("Response completed")
         session.previous_response_id = response_id
         self.db.update_session_in_memory(session.id, session.model_dump())
 

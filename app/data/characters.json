@@ -13,7 +13,7 @@
   },
   {
     "role": "teacher",
-    "name": "Mr. K",
+    "name": "Mister K",
     "image_url": "https://public-assets-bucket-wert.s3.us-east-1.amazonaws.com/mr+k.png",
     "age": 35,
     "gender": "Male",

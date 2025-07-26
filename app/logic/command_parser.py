@@ -1,6 +1,8 @@
 import json
 from app.models.course import AckPayload, BinaryChoiceQuestionPayload, ClassmatePointPayload, ClassmateSpeechPayload, Command, CommandType, GamePayload, MultipleChoiceQuestionPayload, StudentPointPayload, TeacherSpeechPayload, WaitForStudentPayload, WhiteboardPayload
+import logging
 
+logger = logging.getLogger(__name__)
 
 class CommandParser:
     def __init__(self):
@@ -88,6 +90,12 @@ class CommandParser:
                 break
         if has_standalone_tag:
             commands += self.parse()
+        if not has_standalone_tag and not has_start_tag and not self.open_command:
+            bracket_index = self.buffered_content.find("<")
+            if bracket_index != -1:
+                self.buffered_content = self.buffered_content[bracket_index:]
+            else:
+                self.buffered_content = ""
         return commands
 
     def handle_standalone_tags(self, tag):
@@ -111,7 +119,7 @@ class CommandParser:
                 if content[i] in punctuation_marks:
                     last_punctuation_index = i
                     break
-            return content[:last_punctuation_index + 1], content[last_punctuation_index + 1:]
+            return content[:last_punctuation_index + 1].strip().replace("\n", ""), content[last_punctuation_index + 1:].strip().replace("\n", "")
 
         commands = []
         # Handle all command types here
@@ -168,6 +176,7 @@ class CommandParser:
             commands.append(Command(command_type=CommandType.CLASSMATE_POINT, payload=classmate_point_payload))
         # Close command
         if close:
+            logger.info(f"Closing command: {self.open_command}")
             self.open_command = None
             self.open_command_content = ""
         return commands
