@@ -1,6 +1,8 @@
+import base64
 from functools import cache
+import io
 import os
-from deepgram import PrerecordedOptions, DeepgramClient
+from deepgram import PrerecordedOptions, DeepgramClient, FileSource
 
 
 """
@@ -24,14 +26,27 @@ class DeepgramResource:
         return cls._instance
     
     async def transcribe_audio(self, audio_bytes: bytes) -> str:
-        response = await self._deepgram.listen.rest.v("1").transcribe_file_async(
-            source=audio_bytes,
-                options=PrerecordedOptions(model="nova-3")
+        if audio_bytes:
+        # If audio_bytes is base64 encoded, decode it first
+            if isinstance(audio_bytes, str):
+                audio_bytes = base64.b64decode(audio_bytes)
+        else:
+            return None
+        payload: FileSource = {
+            "buffer": audio_bytes,
+        }
+
+        response = await self._deepgram.listen.asyncrest.v("1").transcribe_file(
+            source=payload,
+            options=PrerecordedOptions(model="nova-3", punctuate=True,
+                diarize=True, language="en-US"
             )
+        )
         return response.results.channels[0].alternatives[0].transcript
+
 
 deepgram_resource = DeepgramResource()
 
-@cache
+
 async def transcribe_audio(audio_bytes: bytes):
     return await deepgram_resource.transcribe_audio(audio_bytes)

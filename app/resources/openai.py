@@ -32,7 +32,6 @@ class OpenAIResource:
         """Get the OpenAI client instance"""
         return self._client
     
-    @cache
     async def transcribe_audio(self, audio_bytes: bytes):
         """Transcribe audio using OpenAI's API"""
         # Create a file-like object with proper audio format
@@ -56,7 +55,6 @@ class OpenAIResource:
         wait=wait_exponential(multiplier=1, min=2, max=10),
         retry=retry_if_exception_type((openai.APIError, openai.APIConnectionError, openai.RateLimitError))
     )
-    @cache
     async def create_response(
         self,
         message: str,

@@ -103,7 +103,7 @@ class CommandParser:
     def handle_open_command(self, close=False):
         def extract_speech_content(content):
             if close:
-                return content
+                return content, ""
             # If not closed, send command with content until last punctuation mark
             punctuation_marks = ['.', '!', '?', ':']
             last_punctuation_index = -1

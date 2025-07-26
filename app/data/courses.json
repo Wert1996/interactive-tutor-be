@@ -635,5 +635,404 @@
         ]
       }
     ]
+  },
+  "financial-literacy-23": {
+    "id": "financial-literacy-23",
+    "title": "Financial Literacy Course 23",
+    "description": "Master the fundamentals of personal finance and build a secure financial future",
+    "category": "Finance",
+    "estimatedDuration": "3-4 hours",
+    "topics": [
+      {
+        "title": "Introduction to Budgeting for Kids",
+        "description": "Students will learn what budgets are, how to create basic budgets, distinguish between income and expenses, and understand the importance of saving money as part of financial planning.",
+        "modules": [
+          {
+            "title": "Building Your First Budget",
+            "description": "Students discover budgeting fundamentals through interactive activities, create their own personal budget, and learn to set realistic savings goals while applying math skills to real money problems.",
+            "phases": [
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Hey there! Imagine if I told you there's a secret superpower that can help you get that new video game, save for a bike, AND still have money for snacks. Would you want to learn it?",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style=\"font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;\">\n  <h2 style=\"font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;\">🦸‍♂️ Your Money Superpower: BUDGETING</h2>\n  \n  <div style=\"background: #f7fafc; border-radius: 12px; padding: 25px; margin: 20px 0; border: 1px solid #bee3f8; text-align: center;\">\n    <h3 style=\"font-size: 22px; font-weight: 600; margin: 0 0 15px 0; color: #2d3748;\">What is a Budget? 🤔</h3>\n    <p style=\"font-size: 18px; margin: 0; color: #4a5568; line-height: 1.6;\">A <strong>budget</strong> is like a plan or map that shows you:</p>\n    <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;\">\n      <div style=\"background: #f0fff4; border-radius: 8px; padding: 15px; border: 1px solid #c6f6d5;\">\n        <div style=\"font-size: 24px; margin-bottom: 8px;\">💰</div>\n        <p style=\"font-size: 16px; font-weight: 600; margin: 0; color: #276749;\">Money Coming IN</p>\n      </div>\n      <div style=\"background: #fef5e7; border-radius: 8px; padding: 15px; border: 1px solid #fbd38d;\">\n        <div style=\"font-size: 24px; margin-bottom: 8px;\">🛒</div>\n        <p style=\"font-size: 16px; font-weight: 600; margin: 0; color: #c05621;\">Money Going OUT</p>\n      </div>\n    </div>\n  </div>\n</div>"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, seriously? Is this like some sort of money cheat code? Because my dad literally said I 'have no concept of money' last week...",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Sam, you're about to discover something that's going to change how you think about money forever. It's called budgeting, and it's like having a GPS for your money!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "BINARY_CHOICE_QUESTION",
+                    "payload": {
+                      "question": "A budget is like...",
+                      "left": "A treasure map for your money",
+                      "right": "A way to make money disappear",
+                      "correct": "left"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Now let's become money detectives! Every dollar has a story - it either comes into your life or leaves your life.",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style=\"font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;\">\n  <h2 style=\"font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;\">🕵️ Money Detective: INCOME vs EXPENSES</h2>\n  \n  <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 25px 0;\">\n    <div style=\"background: #f0fff4; border-radius: 12px; padding: 25px; border: 2px solid #c6f6d5;\">\n      <h3 style=\"font-size: 20px; font-weight: 600; text-align: center; margin: 0 0 15px 0; color: #276749;\">💰 INCOME</h3>\n      <p style=\"font-size: 16px; text-align: center; margin: 0 0 15px 0; color: #4a5568;\">Money Coming IN</p>\n      <div style=\"background: white; border-radius: 8px; padding: 15px; margin: 10px 0;\">\n        <p style=\"margin: 5px 0; font-size: 14px;\">🏠 Allowance</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🎂 Birthday money</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🧹 Chore payments</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🐕 Dog walking</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🍋 Lemonade stand</p>\n      </div>\n    </div>\n    \n    <div style=\"background: #fef5e7; border-radius: 12px; padding: 25px; border: 2px solid #fbd38d;\">\n      <h3 style=\"font-size: 20px; font-weight: 600; text-align: center; margin: 0 0 15px 0; color: #c05621;\">🛒 EXPENSES</h3>\n      <p style=\"font-size: 16px; text-align: center; margin: 0 0 15px 0; color: #4a5568;\">Money Going OUT</p>\n      <div style=\"background: white; border-radius: 8px; padding: 15px; margin: 10px 0;\">\n        <p style=\"margin: 5px 0; font-size: 14px;\">🎮 Video games</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🍕 Snacks & food</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🎬 Movies</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">👕 Clothes</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">🎁 Gifts for friends</p>\n      </div>\n    </div>\n  </div>\n</div>"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Ooh, this is giving detective vibes! Are we about to solve the case of the missing allowance money?",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Exactly! Let's investigate these money mysteries and figure out where every dollar goes!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "Your weekly allowance of $10 would be considered:",
+                      "options": [
+                        {
+                          "text": "An expense",
+                          "correct": false
+                        },
+                        {
+                          "text": "Income",
+                          "correct": true
+                        },
+                        {
+                          "text": "A budget",
+                          "correct": false
+                        },
+                        {
+                          "text": "Savings",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Time for some budget math magic! Don't worry - this isn't scary math. This is 'can I afford this awesome thing' math, which is way more fun!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style=\"font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;\">\n  <h2 style=\"font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;\">🪄 Budget Math Magic Formula</h2>\n  \n  <div style=\"background: #f7fafc; border-radius: 12px; padding: 25px; margin: 20px 0; border: 1px solid #bee3f8; text-align: center;\">\n    <h3 style=\"font-size: 24px; font-weight: 600; margin: 0 0 20px 0; color: #2d3748;\">The Golden Rule ✨</h3>\n    <p style=\"font-size: 20px; margin: 0; color: #4a5568; background: white; padding: 15px; border-radius: 8px; border: 2px dashed #bee3f8;\">\n      <strong>INCOME - EXPENSES = Money Left Over</strong>\n    </p>\n  </div>\n  \n  <div style=\"background: #edf2f7; border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #cbd5e0;\">\n    <h3 style=\"font-size: 18px; font-weight: 600; margin: 0 0 15px 0; color: #4a5568;\">📊 Sam's Example Budget</h3>\n    <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 15px;\">\n      <div>\n        <h4 style=\"font-size: 16px; margin: 0 0 10px 0; color: #276749;\">💰 INCOME</h4>\n        <p style=\"margin: 5px 0; font-size: 14px;\">Allowance: $20</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">Dog walking: $15</p>\n        <p style=\"margin: 5px 0; font-size: 14px; font-weight: 600; background: #f0fff4; padding: 5px; border-radius: 4px;\">Total: $35</p>\n      </div>\n      <div>\n        <h4 style=\"font-size: 16px; margin: 0 0 10px 0; color: #c05621;\">🛒 EXPENSES</h4>\n        <p style=\"margin: 5px 0; font-size: 14px;\">Snacks: $8</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">Movies: $12</p>\n        <p style=\"margin: 5px 0; font-size: 14px;\">Gaming: $10</p>\n        <p style=\"margin: 5px 0; font-size: 14px; font-weight: 600; background: #fef5e7; padding: 5px; border-radius: 4px;\">Total: $30</p>\n      </div>\n    </div>\n    <div style=\"background: white; border-radius: 8px; padding: 15px; margin: 15px 0; text-align: center;\">\n      <p style=\"font-size: 16px; font-weight: 600; margin: 0; color: #2d3748;\">$35 - $30 = $5 left over! 🎉</p>\n    </div>\n  </div>\n</div>"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, so math can actually help me figure out if I can buy that new battle pass? No cap, that's actually useful!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Perfect! When expenses are bigger than income, we need to either find more income or spend less. It's like a math puzzle where both sides need to balance!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "If you have $25 income and $30 expenses, your budget is:",
+                      "options": [
+                        {
+                          "text": "Balanced",
+                          "correct": false
+                        },
+                        {
+                          "text": "Perfect",
+                          "correct": false
+                        },
+                        {
+                          "text": "Over budget (need more income or less expenses)",
+                          "correct": true
+                        },
+                        {
+                          "text": "Ready for savings",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Let's start with a game. This game will help you understand the basics of budgeting. You might struggle at first, but by the end you'll understand these concepts at a much deeper level.",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style=\"font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;\">\n  <h1 style=\"font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;\">☕ Coffee Shop Budget Master</h1>\n  \n  <div style=\"background: #f7fafc; border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #bee3f8;\">\n    <h2 style=\"font-size: 20px; font-weight: 600; margin: 0 0 15px 0; color: #2d3748;\">Game Mechanics Overview</h2>\n    \n    <div style=\"background: #f0fff4; border-radius: 8px; padding: 15px; margin: 10px 0; border: 1px solid #c6f6d5;\">\n      <h3 style=\"font-size: 16px; font-weight: 600; margin: 0 0 10px 0; color: #276749;\">🎯 Starting Conditions</h3>\n      <ul style=\"margin: 0; padding-left: 20px;\">\n        <li>Initial Budget: $100</li>\n        <li>Empty Inventory</li>\n        <li>Daily Sales Goal to Meet</li>\n      </ul>\n    </div>\n    \n    <div style=\"background: #fef5e7; border-radius: 8px; padding: 15px; margin: 10px 0; border: 1px solid #fbd38d;\">\n      <h3 style=\"font-size: 16px; font-weight: 600; margin: 0 0 10px 0; color: #c05621;\">🛒 Supply Management</h3>\n      <ul style=\"margin: 0; padding-left: 20px;\">\n        <li>Coffee Beans, Milk, Sugar, Cups</li>\n        <li>Monitor stock levels</li>\n        <li>Purchase supplies as needed</li>\n      </ul>\n    </div>\n    \n    <div style=\"background: #edf2f7; border-radius: 8px; padding: 15px; margin: 10px 0; border: 1px solid #cbd5e0;\">\n      <h3 style=\"font-size: 16px; font-weight: 600; margin: 0 0 10px 0; color: #4a5568;\">📊 Financial Tracking</h3>\n      <ul style=\"margin: 0; padding-left: 20px;\">\n        <li><strong>Income:</strong> Customer payments</li>\n        <li><strong>Expenses:</strong> Supply purchases</li>\n        <li><strong>Profit:</strong> Income - Expenses</li>\n      </ul>\n    </div>\n  </div>\n</div>"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "A coffee shop? That's sick! I'm gonna make mine the most epic coffee spot ever. Think I can add gaming stations?",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Coffee Shop Budget Master is a fun game where you learn budgeting by running your own coffee shop! You start with $100 and need to buy supplies like coffee beans, milk, sugar, and cups to serve customers. Read the rules on the whiteboard and then start the game.",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "GAME",
+                    "payload": {
+                      "game_id": "coffee-shop-financial-literacy",
+                      "code": null
+                    }
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Seems like you've tried out the game. So... how was it?",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Bro, that was harder than I thought! I kept wanting to buy everything cool, but then I'd run out of money. Good thing it was just a game!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "That's exactly what budgeting is like in real life! Did you notice how you had to make choices about what to spend money on? Those tough decisions are what make budgeting a superpower.",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "BINARY_CHOICE_QUESTION",
+                    "payload": {
+                      "question": "The hardest part about managing the coffee shop budget was...",
+                      "left": "Choosing what NOT to buy",
+                      "right": "Adding up the numbers",
+                      "correct": "left"
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "instruction",
+                "content": null,
+                "instruction": "Help the student create their real personal budget using their actual income sources and expenses. Start with TEACHER_SPEECH asking them to think about their current money sources (allowance, chores, gifts, etc.). Use WHITEBOARD early in the phase to create their personalized budget template as they share information, making it visual and engaging with their specific amounts. Have CLASSMATE_SPEECH relate by sharing similar experiences and asking questions like 'Wait, you get paid for that? That's genius!' Build up to creating an MCQ_QUESTION about whether their budget balances based on their real numbers. Adapt all examples to match their interests and situation from their profile. End the phase with the MCQ_QUESTION followed by WAIT_FOR_STUDENT."
+              },
+              {
+                "type": "instruction",
+                "content": null,
+                "instruction": "Guide the student through balancing their personal budget if it's not already balanced. Use TEACHER_SPEECH to explain strategies, then immediately show on WHITEBOARD different scenarios and solutions specific to their situation. Have CLASSMATE_SPEECH share relatable struggles like 'Yeah, I had to give up buying lunch every day to save for my new skateboard.' Include interactive elements where the student makes decisions about their budget priorities. Build up the content and end the phase with a BINARY_CHOICE_QUESTION about a tough budget decision they might face, followed by WAIT_FOR_STUDENT. Focus on practical solutions that work for kids their age."
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Now for the best part - turning your balanced budget into a savings superpower! When you have money left over, you can save for bigger, cooler things!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WHITEBOARD",
+                    "payload": {
+                      "html": "<div style=\"font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: #fefefe; padding: 30px; border-radius: 16px; margin: 20px 0; border: 2px solid #f0f4f8;\">\n  <h2 style=\"font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 25px; color: #4a5568;\">🎯 Savings Goals: Your Money Journey</h2>\n  \n  <div style=\"background: #f0fff4; border-radius: 12px; padding: 25px; margin: 20px 0; border: 2px solid #c6f6d5;\">\n    <h3 style=\"font-size: 20px; font-weight: 600; text-align: center; margin: 0 0 15px 0; color: #276749;\">💡 The \"Pay Yourself First\" Rule</h3>\n    <p style=\"font-size: 16px; text-align: center; margin: 0; color: #4a5568;\">Before spending on anything else, put some money aside for your goals!</p>\n  </div>\n  \n  <div style=\"display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 25px 0;\">\n    <div style=\"background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;\">\n      <div style=\"font-size: 20px; margin-bottom: 5px;\">🎯</div>\n      <p style=\"font-size: 12px; margin: 0; font-weight: 600;\">20%</p>\n    </div>\n    <div style=\"background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;\">\n      <div style=\"font-size: 20px; margin-bottom: 5px;\">🎯</div>\n      <p style=\"font-size: 12px; margin: 0; font-weight: 600;\">40%</p>\n    </div>\n    <div style=\"background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;\">\n      <div style=\"font-size: 20px; margin-bottom: 5px;\">🎯</div>\n      <p style=\"font-size: 12px; margin: 0; font-weight: 600;\">60%</p>\n    </div>\n    <div style=\"background: #edf2f7; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #cbd5e0;\">\n      <div style=\"font-size: 20px; margin-bottom: 5px;\">🎯</div>\n      <p style=\"font-size: 12px; margin: 0; font-weight: 600;\">80%</p>\n    </div>\n    <div style=\"background: #f0fff4; border-radius: 8px; padding: 15px; text-align: center; border: 2px solid #c6f6d5;\">\n      <div style=\"font-size: 20px; margin-bottom: 5px;\">🏆</div>\n      <p style=\"font-size: 12px; margin: 0; font-weight: 600;\">100%</p>\n    </div>\n  </div>\n  \n  <div style=\"background: white; border-radius: 8px; padding: 20px; margin: 15px 0; text-align: center; border: 1px solid #e2e8f0;\">\n    <h4 style=\"font-size: 16px; margin: 0 0 10px 0; color: #4a5568;\">Example: Saving for a $100 Bike</h4>\n    <p style=\"font-size: 14px; margin: 5px 0;\">20% milestone: $20 saved ✅</p>\n    <p style=\"font-size: 14px; margin: 5px 0;\">40% milestone: $40 saved ✅</p>\n    <p style=\"font-size: 14px; margin: 5px 0;\">If you save $10/month → Goal reached in 10 months!</p>\n  </div>\n</div>"
+                    }
+                  },
+                  {
+                    "command_type": "CLASSMATE_SPEECH",
+                    "payload": {
+                      "text": "Wait, so instead of just buying random stuff, I could save up for that sick gaming setup I've been wanting? Mind = blown!",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "TEACHER_SPEECH",
+                    "payload": {
+                      "text": "Exactly! Breaking big goals into smaller milestones makes them feel achievable and keeps you motivated along the way.",
+                      "audio_bytes": null
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  },
+                  {
+                    "command_type": "MCQ_QUESTION",
+                    "payload": {
+                      "question": "Breaking a big savings goal into smaller milestones helps because:",
+                      "options": [
+                        {
+                          "text": "It makes math easier",
+                          "correct": false
+                        },
+                        {
+                          "text": "It keeps you motivated along the way",
+                          "correct": true
+                        },
+                        {
+                          "text": "It's required by law",
+                          "correct": false
+                        },
+                        {
+                          "text": "It costs less money",
+                          "correct": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "command_type": "WAIT_FOR_STUDENT",
+                    "payload": {}
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "content",
+                "content": [
+                  {
+                    "command_type": "TWO_PLAYER_GAME",
+                    "payload": {
+                      "game_type": "THIS_OR_THAT",
+                      "topic": "Your Big Savings Decision",
+                      "sides": [
+                        "Save $5 from every $20 allowance for 6 months to buy a $60 game",
+                        "Spend your $20 allowance each week on smaller fun things"
+                      ]
+                    }
+                  }
+                ],
+                "instruction": null
+              },
+              {
+                "type": "instruction",
+                "content": null,
+                "instruction": "Help the student apply everything they've learned to create an action plan for their real budget. Use TEACHER_SPEECH to review the key concepts: income, expenses, balanced budgets, and savings goals. Show on WHITEBOARD early in the phase their personal timeline and milestones for one specific savings goal they choose. Include CLASSMATE_SPEECH reflecting on the whole journey with excitement like 'I can't wait to show my parents I actually know how to handle money now!' Build up to a final MCQ_QUESTION that tests their understanding of the complete budget process. End by having them commit to one specific action they'll take this week with their money, followed by WAIT_FOR_STUDENT for final reflection."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "total_topics": 4,
+      "total_modules": 7,
+      "total_phases": 7
+    }
   }
 }
