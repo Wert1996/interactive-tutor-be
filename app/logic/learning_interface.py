@@ -151,7 +151,7 @@ class LearningInterface:
                     "type": "student_speech",
                     "text": text
                 })
-                text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the phase is complete."
+                text = f"Student has said something. Please respond accordingly. Use the commands to respond. Feel free to use whiteboard/teacher/classmate speech and other commands. If required, use the student's information to make the session more engaging and personalized. Use analogies that the student can relate to, using the student's information. Stick to the information provided by the student. The following is what the student said: {text}\nEmit <FINISH_MODULE/> at the end if the student's query is answered and the main part of this phase is complete."
                 await self.create_response_and_execute(
                     {
                         "message": text,
@@ -162,7 +162,7 @@ class LearningInterface:
                 )
                 self.log_event(session, "student_interaction", {"interaction": interaction})
         elif interaction.get("type") in ["mcq_question", "binary_choice_question"]:
-            text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Feel free to use whiteboard/teacher/classmate speech and other commands. Emit <FINISH_MODULE/> command at the end if we can proceed."
+            text = f"Student answered {'correctly' if interaction.get('correct', False) else 'incorrectly'}. Student's answer: {interaction.get('answer', '')}. Explain the answer if needed. Use only the defined commands, and no other command. If something is to be explained, use TEACHER_SPEECH and other defined commands. Feel free to use whiteboard/teacher/classmate speech and other commands. Emit <FINISH_MODULE/> command at the end so that we can proceed. Do not overcomplicate this, and emit FINISH_MODULE to proceed further."
             await self.create_response_and_execute(
                 {
                     "message": text,

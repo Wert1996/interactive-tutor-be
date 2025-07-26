@@ -103,6 +103,7 @@ phase_update_prompt = lambda phase_content, phase_instruction:  f"""
         Look at the content delivered, and emit the <FINISH_MODULE/> command if the phase is complete, and no user input is required.
         Emit <ACKNOWLEDGE/> if the phase is not finished.
         Do not emit any other commands or anything else. However, if the student has said something, and you have to respond, use the commands to respond. Use the commands to make the session informative and engaging. The student's queries should be answered well.
+        Remember, the main part of the phase has already been delivered, so we are ready to proceed, unless some student response is required.
         """ if phase_content else f"""
         The instruction for this phase is: {phase_instruction}
         Use the instructions to generate the content of the module.
