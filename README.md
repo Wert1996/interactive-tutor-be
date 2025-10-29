@@ -2,6 +2,16 @@
 
 A FastAPI-based backend application for an interactive tutoring system with WebSocket support.
 
+## Project Overview
+
+Interactive Tutor Backend powers real-time, AI-assisted learning experiences. It manages users, sessions, courses, dashboards, and orchestrates WebSocket-based tutoring flows. Optional integrations for language and speech services are available via modules in `app/resources` (OpenAI, ElevenLabs, Deepgram).
+
+Frontend: The companion React frontend lives in the `interactive-tutor-v3` codebase.
+
+## Demo
+
+Watch a short walkthrough of the experience: [Loom demo](https://www.loom.com/share/e96b33914a3a4bfb87dea8ddc0ec6aa2).
+
 ## Features
 
 - FastAPI web framework
